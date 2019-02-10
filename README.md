@@ -1,2 +1,2 @@
 # koa-nuxt-blog
-koa2 + mongoose + nuxt => blog
+Koa2 + Mongoose + GraphQL + Nuxtjs => blog
