@@ -17,18 +17,28 @@ const ListSchema = new Schema({
   description: String, // 简述
   content: String, // 内容
   coverimg: String, // 封面图
-  checked: Boolean, // 发表状态
-  dele: Boolean // 删除状态
+  checked: {
+    type: Boolean, // 发表状态
+    default: false
+  },
+  dele: {
+    type: Boolean, // 删除状态
+    default: false
+  }
 })
 
-ListSchema.pre('save', (next) => {
+ListSchema.pre('save', function (next) { // 不支持箭头函数
   if (this.isNew) {
-    this.createtime = this.updatetime = Date.now()
+    this.createtime = this.updatetime = Date.now();
   } else {
-    this.updatetime = Date.now()
+    this.updatetime = Date.now();
   }
 
   next()
 })
+
+ListSchema.pre('update', function () {
+  this.updatetime = Date.now();
+});
 
 mongoose.model('List', ListSchema);

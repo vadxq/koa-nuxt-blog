@@ -3,13 +3,16 @@ import Router from 'koa-router';
 import KoaStatic from 'koa-static';
 import bodyParser from 'koa-bodyparser';
 
+require('./mongo');
+const GraphqlRouter = require('./route');
+
 const app = new Koa();
 const router = new Router();
 
 app.use(bodyParser());
 app.use(KoaStatic(__dirname + 'public'));
 
-router.get('/test', (ctx, next) => ctx.body = 'test page');
+router.use('', GraphqlRouter.routes())
 
 app
   .use(router.routes())

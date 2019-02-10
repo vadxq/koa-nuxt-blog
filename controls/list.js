@@ -55,7 +55,7 @@ export const changeArticle = async (ctx, next) => {
 
 // 获取已发表文章列表
 export const fetchArticle = async (ctx, next) => {
-  const info = await Info.find({
+  const info = await List.find({
     dele: false,
     checked: true
   }, {
@@ -73,10 +73,10 @@ export const fetchArticle = async (ctx, next) => {
   if (info.length) {
     ctx.body = {
       status: 1,
-      info: infos
+      info: info
     };
   } else {
-    console.log(changeInfo);
+    console.log(info);
     ctx.body = {
       status: 0
     };
@@ -85,7 +85,7 @@ export const fetchArticle = async (ctx, next) => {
 
 // 获取所有文章列表
 export const fetchAllArticle = async (ctx, next) => {
-  const info = await Info.find({
+  const info = await List.find({
     dele: false
   }, {
     _id: 1,
@@ -97,17 +97,16 @@ export const fetchAllArticle = async (ctx, next) => {
     links: 1,
     description: 1,
     coverimg: 1,
-    checked: 1,
-    dele: 1
+    checked: 1
   });
 
   if (info.length) {
     ctx.body = {
       status: 1,
-      info: infos
+      info: info
     };
   } else {
-    console.log(changeInfo);
+    console.log(info);
     ctx.body = {
       status: 0
     };

@@ -16,3 +16,5 @@ export const database = () => {
 
   mongoose.connection.on('open', async () => console.log('mongo:', dbPath));
 }
+
+database()
