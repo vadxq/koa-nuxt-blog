@@ -8,7 +8,7 @@ import { jwt_secret } from '../config/index'
 export const register = async (ctx, next) => {
   const data = ctx.request.body;
   const checkUser = await User.findOne({
-      name: data.name
+      username: data.username
   });
 
   if(checkUser !== null){
@@ -19,6 +19,7 @@ export const register = async (ctx, next) => {
   } else {
     const user = new User({
         name: data.name,
+        username: data.username,
         password: crypto.createHash('md5').update(data.password).digest('hex'), // 密码加密存储
         email: data.email
     });
@@ -42,7 +43,7 @@ export const register = async (ctx, next) => {
 // 用户登录
 export const login = async (ctx, next) => {
   const data = ctx.request.body;
-  if(!data.name || !data.password){
+  if(!data.username || !data.password){
     ctx.body = {
       status: 0,
       msg: '账号或密码错误'
@@ -50,14 +51,13 @@ export const login = async (ctx, next) => {
   };
 
   const result = await User.findOne({
-    name: data.name,
+    username: data.username,
     password: crypto.createHash('md5').update(data.password).digest('hex')
   });
 
   if(result !== null){
     const token = jwt.sign({
-      name: result.name,
-      _id: result._id
+      username: result.username
     }, jwt_secret, { expiresIn: 60*60 });
     
     ctx.body = {
@@ -73,9 +73,10 @@ export const login = async (ctx, next) => {
 };
 
 // 获取用户信息
+// 这里有一个state，是jwt解析token赋值过来的
 export const getUser = async (ctx, next) => {
   const data = ctx.state.user;
-  const user = await User.findById(data._id);
+  const user = await User.findById(data.username);
 
   if(user !== null){
     const result = {
