@@ -8,10 +8,7 @@ router
   .post('/add', saveArticle)
   .put('/change', changeArticle)
   .get('/list', fetchArticle)
-  .get('/alllist', fetchAllArticle)
-  .get('/graphiql', async (ctx, next) => {
-    await graphiqlKoa({endpointURL: '/graphql'})(ctx, next)
-  });
+  .get('/alllist', fetchAllArticle);
 
 router
   .post('/graphql', async (ctx, next) => {

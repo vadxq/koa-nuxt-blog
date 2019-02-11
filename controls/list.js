@@ -20,6 +20,42 @@ export const saveArticle = async (ctx, next) => {
   };
 };
 
+// 获取单篇文章
+export const getArticle = async (ctx, next) => {
+  const body = ctx.request.body;
+
+  if (body !== null && body !== ' ') {
+    const getone = await List.findByIdAndUpdate({id: body.id, dele: false, checked: true}, {
+      _id: 1,
+      title: 1,
+      content: 1,
+      createtime: 1,
+      updatetime: 1,
+      views: 1,
+      links: 1,
+      description: 1,
+      coverimg: 1
+    });
+    
+    if (getone) {
+      ctx.body = {
+        status: 1,
+        msg: getone
+      };
+    } else {
+      console.log(getone);
+      ctx.body = {
+        status: 0
+      };
+    };
+  } else {
+    ctx.body = {
+      status: 0
+    };
+  };
+
+};
+
 // 编辑文章
 export const changeArticle = async (ctx, next) => {
   const body = ctx.request.body;

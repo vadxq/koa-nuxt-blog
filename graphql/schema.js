@@ -80,7 +80,7 @@ const fetchArticle = {
 const fetchAllArticle = {
   type: new GraphQLList(ArticleType),
   args: {},
-  resolve (root, params, options) {
+  async resolve (root, params, options) {
     return List.find({
       dele: false
     }, {
