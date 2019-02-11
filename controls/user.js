@@ -16,31 +16,31 @@ export const register = async (ctx, next) => {
       status: 0,
       msg: '该用户已存在'
     };
-  }
-
-  const user = new User({
-      name: data.name,
-      password: crypto.createHash('md5').update(data.password).digest('hex'), // 密码加密存储
-      email: data.email
-  });
-
-  const result = await user.save();
-
-  if (result !== null) {
-    ctx.body = {
-      status: 1,
-      msg: '注册成功'
-    };
   } else {
-    ctx.body = {
-      status: 0,
-      msg: '注册失败'
+    const user = new User({
+        name: data.name,
+        password: crypto.createHash('md5').update(data.password).digest('hex'), // 密码加密存储
+        email: data.email
+    });
+  
+    const result = await user.save();
+  
+    if (result !== null) {
+      ctx.body = {
+        status: 1,
+        msg: '注册成功'
+      };
+    } else {
+      ctx.body = {
+        status: 0,
+        msg: '注册失败'
+      };
     };
-  };
+  }
 };
    
 // 用户登录
-export const login = (ctx, next) => {
+export const login = async (ctx, next) => {
   const data = ctx.request.body;
   if(!data.name || !data.password){
     ctx.body = {

@@ -22,10 +22,10 @@ export const saveArticle = async (ctx, next) => {
 
 // 获取单篇文章
 export const getArticle = async (ctx, next) => {
-  const body = ctx.request.body;
+  const body = ctx.params;
 
   if (body !== null && body !== ' ') {
-    const getone = await List.findByIdAndUpdate({id: body.id, dele: false, checked: true}, {
+    const getone = await List.findOne({id: body.id, dele: false, checked: true}, {
       _id: 1,
       title: 1,
       content: 1,
@@ -148,10 +148,10 @@ export const fetchAllArticle = async (ctx, next) => {
 };
 
 export const getDeArticle = async (ctx, next) => {
-  const body = ctx.request.body;
+  const body = ctx.params;
 
   if (body !== null && body !== ' ') {
-    const getone = await List.findByIdAndUpdate({id: body.id, dele: false, checked: true}, {
+    const getone = await List.findOne({id: body.id, dele: false, checked: true}, {
       _id: 1,
       title: 1,
       content: 1,

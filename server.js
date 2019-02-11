@@ -16,12 +16,27 @@ const router = new Router();
 app.use(bodyParser());
 app.use(KoaStatic(__dirname + 'public'));
 app.use(json());
-// app.use(errorHandle());
+
+// 错误处理
+app.use(errorHandle());
+// app.use((ctx, next) => {
+//   return next().catch((err) => {
+//       if(err.status === 401){
+//         ctx.status = 200;
+//         ctx.body = {
+//           status: 0,
+//           msg: '401'
+//         }
+//       }else{
+//         throw err;
+//       }
+//   })
+// })
 
 app.use(koajwt({
   secret: jwt_secret
 }).unless({
-  path: [/\/api\/register/, /\/api\/login/, /\/api\/view/]
+  path: [/\/api\/user\/register/, /\/api\/user\/login/, /\/api\/view/]
 }));
 
 router.use('', GraphqlRouter.routes())

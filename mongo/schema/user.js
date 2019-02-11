@@ -10,6 +10,7 @@ const UserSchema = new Schema({
   name: String,
   email: String,
   password: String,
+  token: String,
   dele: {
     type: Boolean, // 删除状态
     default: false

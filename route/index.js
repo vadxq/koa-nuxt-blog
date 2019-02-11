@@ -3,12 +3,14 @@ import schema from '../graphql/schema';
 // import { adminRouter } from './admin';
 // import { viewRouter } from './view';
 
-const viewRouter = require('./view')
-const adminRouter = require('./admin')
+const viewRouter = require('./view');
+const adminRouter = require('./admin');
+const userRouter = require('./user');
 const router = require('koa-router')();
 
-router.use('/api/view', viewRouter.routes())
-router.use('/api/admin', adminRouter.routes())
+router.use('/api/view', viewRouter.routes());
+router.use('/api/admin', adminRouter.routes());
+router.use('/api/user', userRouter.routes());
 
 router
   .post('/graphql', async (ctx, next) => {

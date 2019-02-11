@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import { dbPath } from '../config';
 
 require('./schema/list');
+require('./schema/user');
 
 export const database = () => {
   mongoose.set('debug', true);
