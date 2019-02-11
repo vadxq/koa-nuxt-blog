@@ -19,19 +19,6 @@ app.use(json());
 
 // 错误处理
 app.use(errorHandle());
-// app.use((ctx, next) => {
-//   return next().catch((err) => {
-//       if(err.status === 401){
-//         ctx.status = 200;
-//         ctx.body = {
-//           status: 0,
-//           msg: '401'
-//         }
-//       }else{
-//         throw err;
-//       }
-//   })
-// })
 
 app.use(koajwt({
   secret: jwt_secret

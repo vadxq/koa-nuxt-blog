@@ -57,7 +57,8 @@ export const login = async (ctx, next) => {
 
   if(result !== null){
     const token = jwt.sign({
-      username: result.username
+      username: result.username,
+      isAdmin: result.isAdmin
     }, jwt_secret, { expiresIn: 60*60 });
     
     ctx.body = {
@@ -80,9 +81,10 @@ export const getUser = async (ctx, next) => {
 
   if(user !== null){
     const result = {
-      _id: user._id,
+      username: user.username,
       name: user.name,
-      email: user.email
+      email: user.email,
+      isAdmin: user.isAdmin
     };
     ctx.body = {
       status: 1,
