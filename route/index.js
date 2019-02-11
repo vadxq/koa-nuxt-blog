@@ -1,14 +1,14 @@
 import { graphqlKoa, graphiqlKoa } from 'graphql-server-koa';
-import {saveArticle, changeArticle, fetchArticle, fetchAllArticle} from '../controls/list';
 import schema from '../graphql/schema';
+// import { adminRouter } from './admin';
+// import { viewRouter } from './view';
 
+const viewRouter = require('./view')
+const adminRouter = require('./admin')
 const router = require('koa-router')();
 
-router
-  .post('/add', saveArticle)
-  .put('/change', changeArticle)
-  .get('/list', fetchArticle)
-  .get('/alllist', fetchAllArticle);
+router.use('/api/view', viewRouter.routes())
+router.use('/api/admin', adminRouter.routes())
 
 router
   .post('/graphql', async (ctx, next) => {

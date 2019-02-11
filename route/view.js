@@ -1,9 +1,9 @@
 import {fetchArticle, getArticle} from '../controls/list';
 
-const router = require('koa-router')();
+const viewRouter = require('koa-router')();
 
-router
-  .get('/view/list', fetchArticle)
-  .get('/view/one/:id', getArticle);
+viewRouter
+  .get('/list', fetchArticle)
+  .get('/one/:id', getArticle);
 
-module.exports = router;
+module.exports = viewRouter;

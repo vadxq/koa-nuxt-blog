@@ -1,11 +1,11 @@
 import {fetchAllArticle, saveArticle, changeArticle, getDeArticle} from '../controls/list';
 
-const router = require('koa-router')();
+const adminRouter = require('koa-router')();
 
-router
-  .get('/admin/list', fetchAllArticle)
-  .post('./admin/one/:id', saveArticle)
-  .put('/admin/one/:id', changeArticle)
-  .get('/admin/one/:id', getDeArticle);
+adminRouter
+  .get('/list', fetchAllArticle)
+  .post('/one/:id', saveArticle)
+  .put('/one/:id', changeArticle)
+  .get('/one/:id', getDeArticle);
 
 module.exports = adminRouter;
