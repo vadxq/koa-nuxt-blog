@@ -97,7 +97,6 @@ export const fetchArticle = async (ctx, next) => {
   }, {
     _id: 1,
     title: 1,
-    content: 1,
     createtime: 1,
     updatetime: 1,
     views: 1,
@@ -126,7 +125,6 @@ export const fetchAllArticle = async (ctx, next) => {
   }, {
     _id: 1,
     title: 1,
-    content: 1,
     createtime: 1,
     updatetime: 1,
     views: 1,
@@ -147,4 +145,41 @@ export const fetchAllArticle = async (ctx, next) => {
       status: 0
     };
   };
+};
+
+export const getDeArticle = async (ctx, next) => {
+  const body = ctx.request.body;
+
+  if (body !== null && body !== ' ') {
+    const getone = await List.findByIdAndUpdate({id: body.id, dele: false, checked: true}, {
+      _id: 1,
+      title: 1,
+      content: 1,
+      createtime: 1,
+      updatetime: 1,
+      views: 1,
+      links: 1,
+      description: 1,
+      coverimg: 1,
+      checked: 1,
+      dele: 1
+    });
+    
+    if (getone) {
+      ctx.body = {
+        status: 1,
+        msg: getone
+      };
+    } else {
+      console.log(getone);
+      ctx.body = {
+        status: 0
+      };
+    };
+  } else {
+    ctx.body = {
+      status: 0
+    };
+  };
+
 };
