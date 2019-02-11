@@ -2,6 +2,7 @@ import Koa from 'koa';
 import Router from 'koa-router';
 import KoaStatic from 'koa-static';
 import bodyParser from 'koa-bodyparser';
+import { port } from './config/index';
 
 require('./mongo');
 const GraphqlRouter = require('./route');
@@ -18,6 +19,6 @@ app
   .use(router.routes())
   .use(router.allowedMethods());
 
-app.listen('7190')
+app.listen(port)
 
-console.log('app run in 7190')
+console.log(`app run in ${port}`)

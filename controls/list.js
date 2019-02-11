@@ -67,7 +67,7 @@ export const fetchArticle = async (ctx, next) => {
     views: 1,
     links: 1,
     description: 1,
-    coverimg: 1,
+    coverimg: 1
   });
 
   if (info.length) {
