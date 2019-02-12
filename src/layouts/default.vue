@@ -25,72 +25,167 @@
                 </v-tab>
               </v-tabs>
             <!-- 多图 -->
-            <v-carousel hide-controls height="400">
-              <v-carousel-item
-                v-for="(item,i) in items"
-                :key="i"
-                :src="item.src"
-              >
-              </v-carousel-item>
-            </v-carousel>
-          </v-card>
-        </v-flex>
+            <v-container>
+              <v-carousel hide-controls height="400">
+                <v-carousel-item
+                  v-for="(item,i) in items"
+                  :key="i"
+                  :src="item.src"
+                >
+                </v-carousel-item>
+              </v-carousel>
+            </v-container>
 
-        <v-hover>
-           <v-container fluid grid-list-sm>
+            <v-container fluid>
             <v-layout row wrap>
-              <v-flex d-flex xs12 order-xs5>
-                <v-layout column>
-                  <v-flex d-flex>
-                    <v-card color="blue-grey" dark tile flat>
-                      <v-card-text>{{ lorem }}</v-card-text>
-                    </v-card>
-                  </v-flex>
-                  <v-flex d-flex>
-                    <v-card color="brown" dark tile flat>
-                      <v-card-text>{{ lorem }}</v-card-text>
-                    </v-card>
-                  </v-flex>
-                </v-layout>
-              </v-flex>
-              <v-flex d-flex xs12 sm7>
+              <v-flex d-flex xs12 sm8>
+                <v-container fluid grid-list-sm>
+                  <h2 class="headline">Latest Posts</h2>
                 <v-layout row wrap>
-                  <v-flex d-flex>
-                    <v-card color="indigo lighten-2" dark tile flat>
-                      <v-card-text>{{ lorem.slice(0, 70) }}</v-card-text>
-                    </v-card>
-                  </v-flex>
-                  <v-flex d-flex>
-                    <v-layout row>
-                      <v-flex
-                        v-for="n in 2"
-                        :key="n"
-                        d-flex
-                      >
-                        <v-card
-                          color="amber lighten-2"
-                          tile
-                          flat
+                  <v-flex d-flex xs12 sm6 class="post-card">
+                    <v-hover>
+                      <v-card max-width="350" slot-scope="{ hover }">
+                        <v-img
+                          class="white--text"
+                          height="200px"
+                          src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
                         >
-                          <v-card-text>{{ lorem.slice(0, 40) }}</v-card-text>
-                        </v-card>
-                      </v-flex>
-                    </v-layout>
+                          <v-container fill-height fluid v-if="hover">
+                            <v-layout fill-height>
+                              <v-flex xs12 align-end flexbox>
+                                <span >1,000 mfdfaknf fnasjn skfnasnk nasn asknfasj asn knasfnkasn na nas nasn asfmas  mnasm nas masn nas faksfn asn masfm nasm asnmn afmasnjabf as nmsn miles of wonder</span>
+                              </v-flex>
+                            </v-layout>
+                          </v-container>
+                        </v-img>
+                        <v-card-title>
+                          <div>
+                            <span>这是第一篇页面</span>
+                          </div>
+                        </v-card-title>
+                        <v-card-actions>
+                          <v-btn flat color="grey">2019.02.16</v-btn>
+                          <v-spacer></v-spacer>
+                          <v-btn icon >
+                            <v-icon>keyboard_arrow_right</v-icon>
+                          </v-btn>
+                        </v-card-actions>
+                      </v-card>
+
+                    </v-hover>
+                  </v-flex>
+                  <v-flex d-flex xs12 sm6 class="post-card">
+                    <v-hover>
+                      <v-card max-width="350" slot-scope="{ hover }">
+                        <v-img
+                          class="white--text"
+                          height="200px"
+                          src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                        >
+                          <v-container fill-height fluid v-if="hover">
+                            <v-layout fill-height>
+                              <v-flex xs12 align-end flexbox>
+                                <span >1,000 mfdfaknf fnasjn skfnasnk nasn asknfasj asn knasfnkasn na nas nasn asfmas  mnasm nas masn nas faksfn asn masfm nasm asnmn afmasnjabf as nmsn miles of wonder</span>
+                              </v-flex>
+                            </v-layout>
+                          </v-container>
+                        </v-img>
+                        <v-card-title>
+                          <div>
+                            <span>这是第一篇页面</span>
+                          </div>
+                        </v-card-title>
+                        <v-card-actions>
+                          <v-btn flat color="grey">2019.02.16</v-btn>
+                          <v-spacer></v-spacer>
+                          <v-btn icon >
+                            <v-icon>keyboard_arrow_right</v-icon>
+                          </v-btn>
+                        </v-card-actions>
+                      </v-card>
+
+                    </v-hover>
+                  </v-flex>
+                  <v-flex d-flex xs12 sm6 class="post-card">
+                    <v-hover>
+                      <v-card max-width="350" slot-scope="{ hover }">
+                        <v-img
+                          class="white--text"
+                          height="200px"
+                          src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                        >
+                          <v-container fill-height fluid v-if="hover">
+                            <v-layout fill-height>
+                              <v-flex xs12 align-end flexbox>
+                                <span >1,000 mfdfaknf fnasjn skfnasnk nasn asknfasj asn knasfnkasn na nas nasn asfmas  mnasm nas masn nas faksfn asn masfm nasm asnmn afmasnjabf as nmsn miles of wonder</span>
+                              </v-flex>
+                            </v-layout>
+                          </v-container>
+                        </v-img>
+                        <v-card-title>
+                          <div>
+                            <span>这是第一篇页面</span>
+                          </div>
+                        </v-card-title>
+                        <v-card-actions>
+                          <v-btn flat color="grey">2019.02.16</v-btn>
+                          <v-spacer></v-spacer>
+                          <v-btn icon >
+                            <v-icon>keyboard_arrow_right</v-icon>
+                          </v-btn>
+                        </v-card-actions>
+                      </v-card>
+
+                    </v-hover>
+                  </v-flex>
+                  <v-flex d-flex xs12 sm6 class="post-card">
+                    <v-hover>
+                      <v-card max-width="350" slot-scope="{ hover }">
+                        <v-img
+                          class="white--text"
+                          height="200px"
+                          src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                        >
+                          <v-container fill-height fluid v-if="hover">
+                            <v-layout fill-height>
+                              <v-flex xs12 align-end flexbox>
+                                <span >1,000 mfdfaknf fnasjn skfnasnk nasn asknfasj asn knasfnkasn na nas nasn asfmas  mnasm nas masn nas faksfn asn masfm nasm asnmn afmasnjabf as nmsn miles of wonder</span>
+                              </v-flex>
+                            </v-layout>
+                          </v-container>
+                        </v-img>
+                        <v-card-title>
+                          <div>
+                            <span>这是第一篇页面</span>
+                          </div>
+                        </v-card-title>
+                        <v-card-actions>
+                          <v-btn flat color="grey">2019.02.16</v-btn>
+                          <v-spacer></v-spacer>
+                          <v-btn icon >
+                            <v-icon>keyboard_arrow_right</v-icon>
+                          </v-btn>
+                        </v-card-actions>
+                      </v-card>
+
+                    </v-hover>
                   </v-flex>
                 </v-layout>
+                </v-container>
               </v-flex>
-              <v-flex d-flex xs12 sm2 child-flex>
+              <v-flex d-flex xs12 sm4 child-flex>
                 <v-card color="orange lighten-2" tile flat>
                   <v-card-text>{{ lorem.slice(0, 90) }}</v-card-text>
                 </v-card>
               </v-flex>
-              <v-flex d-flex xs12 sm3>
-                <v-card color="red lighten-2" dark tile flat>
-                  <v-card-text>{{ lorem.slice(0, 100) }}</v-card-text>
-                </v-card>
-              </v-flex>
+      
             </v-layout>
           </v-container>
+          </v-card>
+        </v-flex>
+
+        <v-hover>
+           
         </v-hover>
       <!-- </v-layout> -->
       <!-- <router-view></router-view> -->
@@ -146,8 +241,9 @@ export default {
     letter-spacing: normal !important;
     font-family: 'Roboto', sans-serif !important;
 }
-.v-tabs {
-  margin: 6px 0;
+.post-card {
+  justify-content: center;
+  margin: 20px 0;
 }
 @media only screen and (max-width: 500px) {
   #openCon {
