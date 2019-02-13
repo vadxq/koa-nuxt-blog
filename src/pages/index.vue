@@ -6,12 +6,9 @@
         <v-flex d-flex xs12 sm8>
           <PostList />
         </v-flex>
-        <v-flex d-flex xs12 sm4 child-flex>
-          <v-card color="orange lighten-2" tile flat>
-            <v-card-text>sdsd</v-card-text>
-          </v-card>
+        <v-flex xs12 sm4 child-flex>
+          <Avatar />
         </v-flex>
-
       </v-layout>
     </v-container>
   </section>
@@ -20,11 +17,13 @@
 <script>
 import Carousel from '~/components/Carousel';
 import PostList from '~/components/PostList';
+import Avatar from '~/components/Avatar';
 
 export default {
   components: {
     Carousel,
-    PostList
+    PostList,
+    Avatar
   }
 }
 </script>

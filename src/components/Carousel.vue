@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-carousel hide-controls height="400">
+    <v-carousel  height="400">
       <v-carousel-item
         v-for="(item,i) in items"
         :key="i"
