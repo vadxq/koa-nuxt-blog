@@ -31,4 +31,4 @@ UserSchema.pre('save', function (next) { // 不支持箭头函数
   next()
 })
 
-mongoose.model('User', UserSchema);
+export const User =  mongoose.model('User', UserSchema);

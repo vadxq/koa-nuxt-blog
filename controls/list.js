@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
-
+require('../mongo/schema/list');
 const List = mongoose.model('List');
-
 // 添加文章(admin)
 export const saveArticle = async (ctx, next) => {
   if (ctx.state.user.isAdmin) {
@@ -28,6 +27,7 @@ export const saveArticle = async (ctx, next) => {
 // 获取单篇文章
 export const getArticle = async (ctx, next) => {
   const body = ctx.params;
+  console.log(body)
 
   if (body !== null && body !== ' ') {
     const getone = await List.findOne({id: body.id, dele: false, checked: true}, {
@@ -99,6 +99,7 @@ export const changeArticle = async (ctx, next) => {
 
 // 获取已发表文章列表
 export const fetchArticle = async (ctx, next) => {
+  console.log('aaaa')
   const info = await List.find({
     dele: false,
     checked: true
@@ -112,6 +113,7 @@ export const fetchArticle = async (ctx, next) => {
     description: 1,
     coverimg: 1
   });
+  console.log(info)
 
   if (info.length) {
     ctx.body = {
@@ -119,7 +121,6 @@ export const fetchArticle = async (ctx, next) => {
       info: info
     };
   } else {
-    console.log(info);
     ctx.body = {
       status: 0
     };

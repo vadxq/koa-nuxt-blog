@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js --exec babel-node",
-    "build": "babel lib -d dist",
+    "build": "babel ./ -d dist",
     "serve": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

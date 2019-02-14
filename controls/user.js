@@ -1,8 +1,11 @@
 import mongoose from 'mongoose';
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
-const User = mongoose.model('User');
 import { jwt_secret } from '../config/index'
+
+require('../mongo/schema/user');
+const User = mongoose.model('User');
+
 
 // 注册
 export const register = async (ctx, next) => {
