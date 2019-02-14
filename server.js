@@ -20,7 +20,7 @@ app.use(bodyParser());
 app.use(json());
 
 // 错误处理
-// app.use(errorHandle());
+app.use(errorHandle());
 
 app.use(koajwt({
   secret: jwt_secret
