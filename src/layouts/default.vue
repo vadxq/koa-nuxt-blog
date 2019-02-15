@@ -20,6 +20,7 @@
                   me
                 </v-tab>
               </v-tabs>
+              <v-divider></v-divider>
             <nuxt/>
           </v-card>
         </v-flex>
