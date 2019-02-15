@@ -4,7 +4,7 @@ const adminRouter = require('koa-router')();
 
 adminRouter
   .get('/list', fetchAllArticle)
-  .post('/one/:id', saveArticle)
+  .post('/one', saveArticle)
   .put('/one/:id', changeArticle)
   .get('/one/:id', getDeArticle);
 
