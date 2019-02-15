@@ -4,7 +4,7 @@
     <v-container fluid>
       <v-layout row wrap>
         <v-flex d-flex xs12 sm8>
-          <PostList />
+          <Postlist />
         </v-flex>
         <v-flex xs12 sm4 child-flex>
           <Avatar />
@@ -16,13 +16,13 @@
 
 <script>
 import Carousel from '~/components/Carousel';
-import PostList from '~/components/PostList';
+import Postlist from '~/components/Postlist';
 import Avatar from '~/components/Avatar';
 
 export default {
   components: {
     Carousel,
-    PostList,
+    Postlist,
     Avatar
   }
 }

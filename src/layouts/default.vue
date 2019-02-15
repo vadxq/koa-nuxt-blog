@@ -22,16 +22,20 @@
               </v-tabs>
               <v-divider></v-divider>
             <nuxt/>
+            <Footer />
           </v-card>
         </v-flex>
     </v-container>
   </v-content>
-  <v-footer app>ddd</v-footer>
 </v-app>
 </template>
 
 <script>
+import Footer from '~/components/Footer';
 export default {
+  components: {
+    Footer
+  },
   data() {
     return {
       
