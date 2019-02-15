@@ -3,7 +3,7 @@
   <v-content>
     <v-container fluid id="openCon">
         <v-flex>
-          <v-card light raised hover >
+          <v-card class="app-card" light raised hover >
             <v-container>
               <h1 class="blog-title text-xs-center">清 竹 茶 馆</h1>
               <h6 class=" grey--text text-xs-center">welcome to vadxq blog</h6>
@@ -53,7 +53,9 @@ export default {
   position: absolute;
   width: 100%;
 }
-
+.app-card {
+  cursor: default;
+}
 .blog-title {
   line-height: 28px !important;
   letter-spacing: normal !important;

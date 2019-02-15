@@ -8,6 +8,8 @@
         </v-flex>
         <v-flex xs12 sm4 child-flex>
           <Avatar />
+          <br>
+          <Links />
         </v-flex>
       </v-layout>
     </v-container>
@@ -18,12 +20,14 @@
 import Carousel from '~/components/Carousel';
 import Postlist from '~/components/Postlist';
 import Avatar from '~/components/Avatar';
+import Links from '~/components/Links';
 
 export default {
   components: {
     Carousel,
     Postlist,
-    Avatar
+    Avatar,
+    Links
   }
 }
 </script>
