@@ -67,7 +67,7 @@ export const changeArticle = async (ctx, next) => {
     const body = ctx.request.body;
   
     if (body !== null && body !== ' ') {
-      const changeInfo = await List.findByIdAndUpdate({id: body.id}, {$set: {
+      const changeInfo = await List.findByIdAndUpdate(body.id, {$set: {
         title: body.title,
         content: body.content,
         description: body.description,
