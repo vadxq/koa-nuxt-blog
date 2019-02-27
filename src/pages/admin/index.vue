@@ -17,7 +17,6 @@
       </v-list>
     </v-layout>
   </v-container>
-  <router-view></router-view>
 </section>
 </template>
 
@@ -36,3 +35,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+section {
+  margin: 1rem 0;
+}
+</style>
+

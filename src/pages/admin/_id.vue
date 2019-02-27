@@ -23,15 +23,18 @@
 <script>
 export default {
   async asyncData ({ $axios, params }) {
-    let { data } = await $axios.get(`http://115.159.83.44:7190/api/view/one/${params}`)
+    let { data } = await $axios.get(`http://115.159.83.44:7190/api/view/one/${params.id}`)
     if (data.status) {
-      return { item: data.info[0] }
+      return { item: data.msg }
     }
   },
   data () {
     return {
       item: {}
     }
+  },
+  created () {
+
   }
 }
 </script>
