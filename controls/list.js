@@ -30,7 +30,7 @@ export const getArticle = async (ctx, next) => {
   console.log(body)
 
   if (body !== null && body !== ' ') {
-    const getone = await List.findOne({id: body.id, dele: false, checked: true}, {
+    const getone = await List.findOne({_id: body.id, dele: false, checked: true}, {
       _id: 1,
       title: 1,
       content: 1,
