@@ -1,41 +1,22 @@
+let localStorage
+if (process.browser) {
+  localStorage = window.localStorage
+}
+
 export default function ({
   $axios,
   redirect,
   store
 }) {
   $axios.onRequest(config => {
-    let token = localStorage.getItem('token')
+    let token
+    if (process.browser) {
+      token = window.localStorage.getItem('token')
+    }
     $axios.setHeader('Authorization', token)
   })
 
   $axios.onResponse(async response => {
-    traverse(response).forEach((value) => {
-      if (!supportWebp) {
-        return
-      }
-
-      if (typeof value !== 'string') {
-        return
-      }
-
-      if (!value.includes('static.ncuhome.cn')) {
-        return
-      }
-
-      if (value.endsWith('.jpg') || value.endsWith('.png') || value.endsWith('.jpeg')) {
-        value = getWebp(value)
-        return value
-      }
-
-      const div = document.createElement('div')
-      div.innerHTML = value
-      const nodes = Array.from(div.querySelectorAll('img'))
-      const images = nodes.map(node => node.src)
-
-      images.forEach(uri => {
-        value.replace(uri, getWebp(uri))
-      })
-    })
     return response
   })
 

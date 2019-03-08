@@ -4,7 +4,7 @@
     <v-divider></v-divider>
     <v-layout row >
       <v-list two-line>
-        <v-list-tile avatar :href="item.url" v-for="item in items" :key="item" fluid>
+        <v-list-tile avatar :href="item.url" v-for="item in items" :key="item._id" fluid>
           <v-list-tile-avatar>
             <img :src="item.icon">
           </v-list-tile-avatar>
