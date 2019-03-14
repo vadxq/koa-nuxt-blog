@@ -30,8 +30,8 @@ export const getArticle = async (ctx, next) => {
   console.log(body)
 
   if (body !== null && body !== ' ') {
-    const getone = await List.findOne({_id: body.id, dele: false, checked: true}, {
-      _id: 1,
+    const getone = await List.findOne({url: body.id, dele: false, checked: true}, {
+      url: 1,
       title: 1,
       content: 1,
       createtime: 1,
@@ -67,11 +67,12 @@ export const changeArticle = async (ctx, next) => {
     const body = ctx.request.body;
   
     if (body !== null && body !== ' ') {
-      const changeInfo = await List.findByIdAndUpdate(body.id, {$set: {
+      const changeInfo = await List.findOneAndUpdate({url: body.url}, {$set: {
         title: body.title,
         content: body.content,
         description: body.description,
         coverimg: body.coverimg,
+        url: body.url,
         checked: body.checked,
         dele: body.dele
       }}, {multi: false});
@@ -104,7 +105,7 @@ export const fetchArticle = async (ctx, next) => {
     dele: false,
     checked: true
   }, {
-    _id: 1,
+    url: 1,
     title: 1,
     createtime: 1,
     updatetime: 1,
@@ -133,7 +134,7 @@ export const fetchAllArticle = async (ctx, next) => {
     const info = await List.find({
       dele: false
     }, {
-      _id: 1,
+      url: 1,
       title: 1,
       createtime: 1,
       updatetime: 1,
@@ -165,8 +166,8 @@ export const getDeArticle = async (ctx, next) => {
   if (ctx.state.user.isAdmin) {
     const body = ctx.params;
     if (body !== null && body !== ' ') {
-      const getone = await List.findOne({id: body.id, dele: false, checked: true}, {
-        _id: 1,
+      const getone = await List.findOne({url: body.url, dele: false, checked: true}, {
+        url: 1,
         title: 1,
         content: 1,
         createtime: 1,

@@ -21,6 +21,7 @@ const ListSchema = new Schema({
     type: Boolean, // 发表状态
     default: false
   },
+  url: String,
   dele: {
     type: Boolean, // 删除状态
     default: false
