@@ -36,7 +36,10 @@ module.exports = {
   */
   css: [
     '~/assets/style/app.styl',
-    '~/assets/style/main.css'
+    '~/assets/style/main.css',
+    'quill/dist/quill.snow.css',
+    'quill/dist/quill.bubble.css',
+    'quill/dist/quill.core.css'
   ],
 
   /*
@@ -44,7 +47,8 @@ module.exports = {
   */
   plugins: [
     '@/plugins/vuetify',
-    '@/plugins/axios'
+    '@/plugins/axios',
+    { src: '@/plugins/quill', ssr: false }
   ],
 
   /*

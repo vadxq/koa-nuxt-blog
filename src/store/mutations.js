@@ -1,12 +1,15 @@
 const mutations = {
-  setSearchKeys (state, text) {
-    state.searchKeys = text
+  setActiveMsg (state, text) {
+    state.activeMsg = text
   },
   setLogin (state, text) {
     state.islogin = text
   },
-  setX5 (state, text) {
-    state.isX5 = text
+  setModel (state, text) {
+    state.isModel = text
+  },
+  setContent (state, text) {
+    state.content = text
   },
   setAlertMsg (state, text) {
     state.alertMsg.status = text.status

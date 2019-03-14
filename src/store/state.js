@@ -1,7 +1,11 @@
 const state = () => ({
-  searchKeys: '',
+  activeMsg: {
+    id: '',
+    status: ''
+  },
   islogin: false,
-  isX5: false,
+  isModel: false,
+  content: '',
   alertMsg: {
     status: '',
     msg: ''

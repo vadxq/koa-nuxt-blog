@@ -1,59 +1,94 @@
 <template>
 <section>
   <v-container>
-    <h1>文章列表</h1>
-    <v-divider></v-divider>
-    <v-layout row >
-      <v-list three-line>
-        <template v-for="(item, index) in list">
-          <v-subheader
-            v-if="item.header"
-            :key="item.header"
-          >
-            {{ item.header }}
-          </v-subheader>
-
-          <v-divider
-            v-else-if="item.divider"
-            :key="index"
-            :inset="item.inset"
-          ></v-divider>
-
-          <v-list-tile
-            v-else
-            :key="item.title"
-            avatar
-            :href="'/admin/' + item._id"
-          >
-            <v-list-tile-avatar>
-              <img :src="item.coverimg">
-            </v-list-tile-avatar>
-
-            <v-list-tile-content>
-              <v-list-tile-title v-html="item.title"></v-list-tile-title>
-              <v-list-tile-sub-title v-html="item.description"></v-list-tile-sub-title>
-            </v-list-tile-content>
-          </v-list-tile>
-        </template>
-      </v-list>
-
-      <!-- <v-list four-line>
-        <v-list-tile avatar :href="'/admin/' + item._id" v-for="item in list" :key="item" fluid>
-          <v-list-tile-avatar>
-            <img :src="item.coverimg">
-          </v-list-tile-avatar>
-          <v-list-tile-content>
-            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-            <v-list-tile-sub-title>{{ item.description }}</v-list-tile-sub-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list> -->
+    <v-layout row>
+      <v-flex d-flex xs8 sm8>
+        <h1>文章列表</h1>
+      </v-flex>
+      <v-flex d-flex xs4 sm4>
+        <v-btn flat color="success" @click="addArticle(4)">添加新文章</v-btn>
+      </v-flex>
     </v-layout>
+    
+    <v-divider></v-divider>
+    <v-container grid-list-sm>
+      <v-layout row wrap>
+        <v-flex d-flex xs12 sm6 class="post-card" v-for="item in list" :key="item._id">
+          <v-hover>
+            <v-card slot-scope="{hover}">
+              <v-img
+                class="white--text"
+                height="200px"
+                src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+              >
+                <v-container fill-height  v-if="hover">
+                  <v-layout fill-height>
+                    <v-flex xs12 align-end flexbox>
+                      <span>{{item.description}}</span>
+                    </v-flex>
+                  </v-layout>
+                </v-container>
+              </v-img>
+              <v-card-title>
+                <div>
+                  <span>{{item.title}}</span>
+                </div>
+                <div class="editbtns">
+                  <v-btn flat @click="editArticle(item._id,0)" color="success">编辑</v-btn>
+                  <v-btn flat color="info" @click="checkArticle(item._id,1)">审核</v-btn>
+                  <v-btn flat color="warning" @click="backArticle(item._id,2)">撤回</v-btn>
+                  <v-btn flat color="error" @click="delArticle(item._id,3)">删除</v-btn>
+                </div>
+              </v-card-title>
+
+              <v-card-actions>
+                <v-btn flat color="grey">{{item.createtime.slice(0,10)}}</v-btn>
+                
+                
+                <v-spacer></v-spacer>
+                <v-btn icon :href="'/article/' + item._id">
+                  <v-icon>keyboard_arrow_right</v-icon>
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-hover>
+        </v-flex>
+      </v-layout>
+    </v-container>
+    <v-dialog scrollable  v-model="isModel" persistent min-width="70vh">
+      <v-card>
+        <!-- <v-card-title>
+          <span v-if="this.activeStatus == 0" class="headline">User Profile</span>
+        </v-card-title> -->
+        <v-card-text>
+          <v-container fuild>
+            <!-- <v-layout wrap> -->
+              <div>
+                <h4 v-if="this.activeStatus == 0" >编辑</h4>
+                <h4 v-if="this.activeStatus == 4" >新增</h4>
+              </div>
+              <v-text-field v-model="article.title" label="title" required></v-text-field>
+              <v-text-field v-model="article.description" label="description" required></v-text-field>
+              <v-text-field v-model="article.coverimg" label="coverimg" required></v-text-field>
+              <Edit  />
+            <!-- </v-layout> -->
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" flat @click="isModel = false">Close</v-btn>
+          <v-btn v-if="this.activeStatus == 0" color="blue darken-1" flat @click="putMsg">提交</v-btn>
+          <v-btn v-if="this.activeStatus == 4" color="blue darken-1" flat @click="postMsg">提交</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </section>
 </template>
 
 <script>
+import Edit from '~/components/Edit'
+
 export default {
   async asyncData ({ $axios }) {
     let { data } = await $axios.get(`http://blog.vadxq.com/api/view/list`)
@@ -61,17 +96,86 @@ export default {
       return { list: data.info }
     }
   },
+  components: {
+    Edit
+  },
   data () {
     return {
-      list: []
+      list: [],
+      activeId: '',
+      isModel: false,
+      activeStatus: '', // 0,编辑。1审核，2撤回，3删除,4新文章
+      article: {
+        title: '',
+        description: '',
+        coverimg: ''
+      }
     }
-  }
+  },
+  methods: {
+    async editArticle (id, status) {
+      this.isModel = true
+      this.activeId = id
+      this.activeStatus = status
+      let res = await this.$axios.get(`https://blog.vadxq.com/api/view/one/${this.activeId}`)
+      if (res.data.status) {
+        this.article = res.data.msg
+        this.$store.commit('setContent', this.article.content)
+      }
+    },
+    checkArticle (id, status) {
+      this.isModel = true
+      this.activeId = id
+      this.activeStatus = status
+    },
+    backArticle (id, status) {
+      this.isModel = true
+      this.activeId = id
+      this.activeStatus = status
+    },
+    delArticle (id, status) {
+      this.isModel = true
+      this.activeId = id
+      this.activeStatus = status
+    },
+    addArticle(status) {
+      this.isModel = true
+      this.article = {
+        title: '',
+        description: '',
+        coverimg: ''
+      }
+      this.$store.commit('setContent', '')
+      this.activeStatus = status
+    },
+    async postMsg () {
+      this.article.content = this.$store.state.content
+      console.log(this.article)
+      if (this.title && this.description && this.coverimg && this.article.content) {
+        let res = await this.$axios.post(`http://blog.vadxq.com/api/view/list`)
+      }
+    },
+    async putMsg () {
+      this.article.content = this.$store.content
+      if (this.title && this.description && this.coverimg && this.article.content) {
+        let res = await this.$axios.put(`http://blog.vadxq.com/api/view/list`)
+      }
+    }
+  },
 }
 </script>
 
 <style scoped>
 section {
   margin: 1rem 0;
+}
+.editbtns .v-btn {
+  margin: 10px 0 -10px 0;
+  min-width: 50px;
+  min-height: 20px;
+}
+.v-card__text {
+  min-height: 70vh;
 }
 
 </style>

@@ -33,25 +33,6 @@
         </v-hover>
       </v-flex>
     </v-layout>
-    <!-- <v-timeline align-top
-        dense>
-      <v-timeline-item v-for="item in list" :key="item._id" color="grey lighten-1" fill-dot right small>
-        <v-card>
-          <v-card-title class="grey lighten-1">
-            <h6 class="display-1 mr-3 white--text font-weight-light">{{item.title}}</h6>
-            <v-icon dark size="42">mdi-home-outline</v-icon>
-          </v-card-title>
-          <v-container>
-            <v-layout>
-              <v-flex
-                xs8
-              ><p>{{item.description}}</p></v-flex>
-              <v-flex xs4><v-img src="https://cdn.vuetifyjs.com/images/cards/docks.jpg" alt="" ></v-img></v-flex>
-            </v-layout>
-          </v-container>
-        </v-card>
-      </v-timeline-item>
-    </v-timeline> -->
   </v-container>
 </template>
 
