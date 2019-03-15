@@ -18,7 +18,7 @@
 
 <script>
 import Carousel from '~/components/Carousel';
-import Postlist from '~/components/Postlist';
+import Postlist from '~/components/PostList';
 import Avatar from '~/components/Avatar';
 import Links from '~/components/Links';
 

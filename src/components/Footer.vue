@@ -10,7 +10,7 @@
           <v-icon size="32" color="white">mail_outline</v-icon>
         </v-btn>
         <v-btn icon href="https://github.com/vadxq">
-          <img src="@/assets/imgs/Github.png">
+          <img src="@/assets/imgs/GitHub.png">
         </v-btn>
         <v-btn icon href="https://weibo.com/vadxq/">
           <img src="@/assets/imgs/weibo.png">
