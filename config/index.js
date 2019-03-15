@@ -1,5 +1,5 @@
 // mongoose path
-export const dbPath = 'mongodb://localhost/koanuxtblog';
+export const dbPath = 'mongodb://localhost/koaNuxtBlog';
 
 // server port
 export const port = 7190;
