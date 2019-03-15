@@ -9,7 +9,8 @@ const state = () => ({
   alertMsg: {
     status: '',
     msg: ''
-  }
+  },
+  auth: ''
 })
 
 export default state

@@ -14,6 +14,9 @@ const mutations = {
   setAlertMsg (state, text) {
     state.alertMsg.status = text.status
     state.alertMsg.msg = text.msg
+  },
+  setAuth (state, text) {
+    state.auth = text
   }
 }
 

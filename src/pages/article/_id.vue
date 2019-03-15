@@ -3,6 +3,7 @@
   <v-container>
     <h1>{{item.title}}</h1>
     <v-divider></v-divider>
+      <v-img aspect-ratio="1.5" :src="item.coverimg"></v-img>
     <v-layout row >
       <div v-html="item.content"></div>
     </v-layout>

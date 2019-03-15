@@ -7,7 +7,7 @@
             <v-img
               class="white--text"
               height="200px"
-              src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+              :src="item.coverimg"
             >
               <v-container fill-height  v-if="hover">
                 <v-layout fill-height>
@@ -25,7 +25,7 @@
             <v-card-actions>
               <v-btn flat color="grey">{{item.createtime.slice(0,10)}}</v-btn>
               <v-spacer></v-spacer>
-              <v-btn icon :href="'/article/' + item._id">
+              <v-btn icon :href="'/article/' + item.url" target="_blank">
                 <v-icon>keyboard_arrow_right</v-icon>
               </v-btn>
             </v-card-actions>

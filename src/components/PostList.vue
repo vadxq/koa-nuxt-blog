@@ -2,124 +2,31 @@
   <v-container fluid grid-list-sm>
     <h2 class="headline">Latest Posts</h2>
     <v-layout row wrap>
-      <v-flex d-flex xs12 sm6 class="post-card">
+      <v-flex d-flex xs12 sm6 class="post-card" v-for="item in list" :key="item._id">
         <v-hover>
-          <v-card max-width="350" slot-scope="{ hover }">
+          <v-card max-width="350"  slot-scope="{hover}">
             <v-img
               class="white--text"
               height="200px"
-              src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+              :src="item.coverimg"
             >
-              <v-container fill-height fluid v-if="hover">
+              <v-container fill-height  v-if="hover">
                 <v-layout fill-height>
                   <v-flex xs12 align-end flexbox>
-                    <span>1,000 mfdfaknf fnasjn skfnasnk nasn asknfasj asn knasfnkasn na nas nasn asfmas mnasm nas masn nas faksfn asn masfm nasm asnmn afmasnjabf as nmsn miles of wonder</span>
+                    <span>{{item.description}}</span>
                   </v-flex>
                 </v-layout>
               </v-container>
             </v-img>
             <v-card-title>
               <div>
-                <span>这是第一篇页面</span>
+                <span>{{item.title}}</span>
               </div>
             </v-card-title>
             <v-card-actions>
-              <v-btn flat color="grey">2019.02.16</v-btn>
+              <v-btn flat color="grey">{{item.createtime.slice(0,10)}}</v-btn>
               <v-spacer></v-spacer>
-              <v-btn icon>
-                <v-icon>keyboard_arrow_right</v-icon>
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-hover>
-      </v-flex>
-      <v-flex d-flex xs12 sm6 class="post-card">
-        <v-hover>
-          <v-card max-width="350" slot-scope="{ hover }">
-            <v-img
-              class="white--text"
-              height="200px"
-              src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-            >
-              <v-container fill-height fluid v-if="hover">
-                <v-layout fill-height>
-                  <v-flex xs12 align-end flexbox>
-                    <span>1,000 mfdfaknf fnasjn skfnasnk nasn asknfasj asn knasfnkasn na nas nasn asfmas mnasm nas masn nas faksfn asn masfm nasm asnmn afmasnjabf as nmsn miles of wonder</span>
-                  </v-flex>
-                </v-layout>
-              </v-container>
-            </v-img>
-            <v-card-title>
-              <div>
-                <span>这是第一篇页面</span>
-              </div>
-            </v-card-title>
-            <v-card-actions>
-              <v-btn flat color="grey">2019.02.16</v-btn>
-              <v-spacer></v-spacer>
-              <v-btn icon>
-                <v-icon>keyboard_arrow_right</v-icon>
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-hover>
-      </v-flex>
-      <v-flex d-flex xs12 sm6 class="post-card">
-        <v-hover>
-          <v-card max-width="350" slot-scope="{ hover }">
-            <v-img
-              class="white--text"
-              height="200px"
-              src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-            >
-              <v-container fill-height fluid v-if="hover">
-                <v-layout fill-height>
-                  <v-flex xs12 align-end flexbox>
-                    <span>1,000 mfdfaknf fnasjn skfnasnk nasn asknfasj asn knasfnkasn na nas nasn asfmas mnasm nas masn nas faksfn asn masfm nasm asnmn afmasnjabf as nmsn miles of wonder</span>
-                  </v-flex>
-                </v-layout>
-              </v-container>
-            </v-img>
-            <v-card-title>
-              <div>
-                <span>这是第一篇页面</span>
-              </div>
-            </v-card-title>
-            <v-card-actions>
-              <v-btn flat color="grey">2019.02.16</v-btn>
-              <v-spacer></v-spacer>
-              <v-btn icon>
-                <v-icon>keyboard_arrow_right</v-icon>
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-hover>
-      </v-flex>
-      <v-flex d-flex xs12 sm6 class="post-card">
-        <v-hover>
-          <v-card max-width="350" slot-scope="{ hover }">
-            <v-img
-              class="white--text"
-              height="200px"
-              src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-            >
-              <v-container fill-height fluid v-if="hover">
-                <v-layout fill-height>
-                  <v-flex xs12 align-end flexbox>
-                    <span>1,000 mfdfaknf fnasjn skfnasnk nasn asknfasj asn knasfnkasn na nas nasn asfmas mnasm nas masn nas faksfn asn masfm nasm asnmn afmasnjabf as nmsn miles of wonder</span>
-                  </v-flex>
-                </v-layout>
-              </v-container>
-            </v-img>
-            <v-card-title>
-              <div>
-                <span>这是第一篇页面</span>
-              </div>
-            </v-card-title>
-            <v-card-actions>
-              <v-btn flat color="grey">2019.02.16</v-btn>
-              <v-spacer></v-spacer>
-              <v-btn icon>
+              <v-btn icon :href="'/article/' + item.url" target="_blank">
                 <v-icon>keyboard_arrow_right</v-icon>
               </v-btn>
             </v-card-actions>
@@ -128,17 +35,25 @@
       </v-flex>
     </v-layout>
     <div class="text-xs-center">
-    <v-pagination
-        v-model="page"
-        :length="6"
-      ></v-pagination>
+      <v-btn block color="blue-grey" to="/post" class="white--text">更 多</v-btn>
     </div>
   </v-container>
 </template>
 
 <script>
 export default {
-  
+  // async asyncData ({ $axios }) {
+  //   let { data } = await $axios.get(`https://blog.vadxq.com/api/view/list`)
+  //   if (data.status) {
+  //     return { list: data.info }
+  //   }
+  // },
+  data () {
+    return {
+      list: []
+    }
+  },
+  props: ['list']
 }
 </script>
 

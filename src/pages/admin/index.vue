@@ -13,13 +13,13 @@
     <v-divider></v-divider>
     <v-container grid-list-sm>
       <v-layout row wrap>
-        <v-flex d-flex xs12 sm6 class="post-card" v-for="item in list" :key="item._id">
+        <v-flex d-flex xs12 sm6 class="post-card" v-for="item in list" :key="item.url">
           <v-hover>
             <v-card slot-scope="{hover}">
               <v-img
                 class="white--text"
                 height="200px"
-                src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                :src="item.coverimg"
               >
                 <v-container fill-height  v-if="hover">
                   <v-layout fill-height>
@@ -34,10 +34,10 @@
                   <span>{{item.title}}</span>
                 </div>
                 <div class="editbtns">
-                  <v-btn flat @click="editArticle(item._id,0)" color="success">编辑</v-btn>
-                  <v-btn flat color="info" @click="checkArticle(item._id,1)">审核</v-btn>
-                  <v-btn flat color="warning" @click="backArticle(item._id,2)">撤回</v-btn>
-                  <v-btn flat color="error" @click="delArticle(item._id,3)">删除</v-btn>
+                  <v-btn flat @click="editArticle(item.url, 0)" color="success">编辑</v-btn>
+                  <v-btn flat color="info" @click="checkArticle(item.url, 1)">审核</v-btn>
+                  <v-btn flat color="warning" @click="backArticle(item.url, 2)">撤回</v-btn>
+                  <v-btn flat color="error" @click="delArticle(item.url, 3)">删除</v-btn>
                 </div>
               </v-card-title>
 
@@ -46,7 +46,7 @@
                 
                 
                 <v-spacer></v-spacer>
-                <v-btn icon :href="'/article/' + item._id">
+                <v-btn icon :href="'/article/' + item.url">
                   <v-icon>keyboard_arrow_right</v-icon>
                 </v-btn>
               </v-card-actions>
@@ -67,8 +67,10 @@
                 <h4 v-if="this.activeStatus == 0" >编辑</h4>
                 <h4 v-if="this.activeStatus == 4" >新增</h4>
               </div>
+              <v-text-field v-model="article.url" label="url" required></v-text-field>
               <v-text-field v-model="article.title" label="title" required></v-text-field>
               <v-text-field v-model="article.description" label="description" required></v-text-field>
+              <v-textarea v-model="article.description" label="description" required></v-textarea>
               <v-text-field v-model="article.coverimg" label="coverimg" required></v-text-field>
               <Edit  />
             <!-- </v-layout> -->
@@ -91,7 +93,7 @@ import Edit from '~/components/Edit'
 
 export default {
   async asyncData ({ $axios }) {
-    let { data } = await $axios.get(`http://blog.vadxq.com/api/view/list`)
+    let { data } = await $axios.get(`https://blog.vadxq.com/api/admin/list`)
     if (data.status) {
       return { list: data.info }
     }
@@ -108,7 +110,8 @@ export default {
       article: {
         title: '',
         description: '',
-        coverimg: ''
+        coverimg: '',
+        url: ''
       }
     }
   },
@@ -117,6 +120,13 @@ export default {
       this.isModel = true
       this.activeId = id
       this.activeStatus = status
+      this.article = {
+        title: '',
+        description: '',
+        coverimg: '',
+        url: ''
+      }
+      this.$store.commit('setContent', '')
       let res = await this.$axios.get(`https://blog.vadxq.com/api/view/one/${this.activeId}`)
       if (res.data.status) {
         this.article = res.data.msg

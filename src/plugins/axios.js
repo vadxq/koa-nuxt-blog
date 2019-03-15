@@ -1,7 +1,4 @@
-let localStorage
-if (process.browser) {
-  localStorage = window.localStorage
-}
+const Cookie = process.client ? require('js-cookie') : undefined
 
 export default function ({
   $axios,
@@ -12,8 +9,10 @@ export default function ({
     let token
     if (process.browser) {
       token = window.localStorage.getItem('token')
+    } else {
+      token = Cookie.get('auth')
     }
-    $axios.setHeader('Authorization', token)
+    $axios.setHeader('Authorization', 'Bearer ' + token)
   })
 
   $axios.onResponse(async response => {
@@ -26,8 +25,8 @@ export default function ({
       redirect('/400')
     }
     if (code === 401) {
-      // redirect('/400')
-      localStorage.removeItem('token')
+      redirect('/login')
+      // localStorage.removeItem('token')
       let errorMs = {
         status: 'error',
         msg: '登陆过期'

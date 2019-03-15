@@ -4,7 +4,7 @@
     <v-container fluid>
       <v-layout row wrap>
         <v-flex d-flex xs12 sm8>
-          <Postlist />
+          <Postlist :list=list />
         </v-flex>
         <v-flex xs12 sm4 child-flex>
           <Avatar />
@@ -28,6 +28,21 @@ export default {
     Postlist,
     Avatar,
     Links
+  },
+  async asyncData ({ $axios }) {
+    let { data } = await $axios.get(`https://blog.vadxq.com/api/view/list`)
+    if (data.status) {
+      if (data.info.length > 6) {
+        return { list: data.info.slice(0,6)}
+      } else {
+        return { list: data.info }
+      }
+    }
+  },
+  data () {
+    return {
+      list: []
+    }
   }
 }
 </script>
