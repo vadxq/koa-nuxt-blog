@@ -11,7 +11,7 @@ RUN rm -rf package-lock.json
 
 RUN npm install
 
-RUN ./node_modules/.bin/nuxt build
+RUN npm build
 
 #解决nuxtjs问题
 ENV NODE_ENV=production
