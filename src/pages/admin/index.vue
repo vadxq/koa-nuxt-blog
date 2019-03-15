@@ -35,8 +35,8 @@
                 </div>
                 <div class="editbtns">
                   <v-btn flat @click="editArticle(item.url, 0)" color="success">编辑</v-btn>
-                  <v-btn flat color="info" @click="checkArticle(item.url, 1)">审核</v-btn>
-                  <v-btn flat color="warning" @click="backArticle(item.url, 2)">撤回</v-btn>
+                  <v-btn v-if="!item.checked" flat color="info" @click="checkArticle(item.url, 1)">审核</v-btn>
+                  <v-btn v-if="item.checked" flat color="warning" @click="backArticle(item.url, 2)">撤回</v-btn>
                   <v-btn flat color="error" @click="delArticle(item.url, 3)">删除</v-btn>
                 </div>
               </v-card-title>
@@ -46,7 +46,7 @@
                 
                 
                 <v-spacer></v-spacer>
-                <v-btn icon :href="'/article/' + item.url">
+                <v-btn icon :to="'/admin/' + item.url">
                   <v-icon>keyboard_arrow_right</v-icon>
                 </v-btn>
               </v-card-actions>
@@ -93,7 +93,7 @@ import Edit from '~/components/Edit'
 
 export default {
   async asyncData ({ $axios }) {
-    let { data } = await $axios.get(`https://blog.vadxq.com/api/admin/list`)
+    let { data } = await $axios.get('https://blog.vadxq.com/api/admin/list')
     if (data.status) {
       return { list: data.info }
     }
@@ -133,22 +133,34 @@ export default {
         this.$store.commit('setContent', this.article.content)
       }
     },
-    checkArticle (id, status) {
+    async checkArticle (id, status) {
       this.isModel = true
       this.activeId = id
       this.activeStatus = status
+      let res = await this.$axios.get(`https://blog.vadxq.com/api/admin/check/${this.activeId}`)
+      if (res.data.status) {
+        console.log(res.data)
+      }
     },
-    backArticle (id, status) {
+    async backArticle (id, status) {
       this.isModel = true
       this.activeId = id
       this.activeStatus = status
+      let res = await this.$axios.get(`https://blog.vadxq.com/api/admin/back/${this.activeId}`)
+      if (res.data.status) {
+        console.log(res.data)
+      }
     },
-    delArticle (id, status) {
+    async delArticle (id, status) {
       this.isModel = true
       this.activeId = id
       this.activeStatus = status
+      let res = await this.$axios.get(`https://blog.vadxq.com/api/admin/del/${this.activeId}`)
+      if (res.data.status) {
+        console.log(res.data)
+      }
     },
-    addArticle(status) {
+    async addArticle(status) {
       this.isModel = true
       this.article = {
         title: '',
@@ -161,14 +173,21 @@ export default {
     async postMsg () {
       this.article.content = this.$store.state.content
       console.log(this.article)
-      if (this.title && this.description && this.coverimg && this.article.content) {
-        let res = await this.$axios.post(`http://blog.vadxq.com/api/view/list`)
+      if (this.article.title && this.article.description && this.article.coverimg && this.article.content) {
+        let res = await this.$axios.post(`https://blog.vadxq.com/api/admin/one`, this.article)
+        if (res.data.status) {
+          console.log(res.data)
+          this.isModel = false
+        }
       }
     },
     async putMsg () {
       this.article.content = this.$store.content
-      if (this.title && this.description && this.coverimg && this.article.content) {
-        let res = await this.$axios.put(`http://blog.vadxq.com/api/view/list`)
+      if (this.article.title && this.article.description && this.article.coverimg && this.article.content && this.article.url) {
+        let res = await this.$axios.put(`https://blog.vadxq.com/api/admin/one/${this.article.url}`)
+        if (res.data.status) {
+          console.log(res.data)
+        }
       }
     }
   },

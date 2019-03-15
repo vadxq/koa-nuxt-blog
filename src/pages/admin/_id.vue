@@ -13,7 +13,7 @@
 <script>
 export default {
   async asyncData ({ $axios, params }) {
-    let { data } = await $axios.get(`http://blog.vadxq.com/api/view/one/${params.id}`)
+    let { data } = await $axios.get(`https://blog.vadxq.com/api/admin/one/${params.id}`)
     if (data.status) {
       return { item: data.msg }
     }

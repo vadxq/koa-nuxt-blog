@@ -43,10 +43,14 @@ export const getArticle = async (ctx, next) => {
     });
     
     if (getone) {
+      
       ctx.body = {
         status: 1,
         msg: getone
       };
+      await List.findOneAndUpdate({url: body.id}, {$set: {
+        views: getone.views += 1
+      }}, {multi: false});
     } else {
       console.log(getone);
       ctx.body = {
@@ -166,7 +170,7 @@ export const getDeArticle = async (ctx, next) => {
   if (ctx.state.user.isAdmin) {
     const body = ctx.params;
     if (body !== null && body !== ' ') {
-      const getone = await List.findOne({url: body.url, dele: false, checked: true}, {
+      const getone = await List.findOne({url: body.id, dele: false, checked: true}, {
         url: 1,
         title: 1,
         content: 1,
@@ -200,4 +204,97 @@ export const getDeArticle = async (ctx, next) => {
     ctx.status = 401;
   };
 
+};
+
+// 审核文章（admin）
+export const checkArticle = async (ctx, next) => {
+  if (ctx.state.user.isAdmin) {
+    const body = ctx.params;
+  
+    if (body !== null && body !== ' ') {
+      const changeInfo = await List.findOneAndUpdate({url: body.id}, {$set: {
+        checked: true
+      }}, {multi: false});
+      
+      if (changeInfo) {
+        ctx.body = {
+          status: 1,
+          msg: changeInfo
+        };
+      } else {
+        console.log(changeInfo);
+        ctx.body = {
+          status: 0
+        };
+      };
+    } else {
+      ctx.body = {
+        status: 0
+      };
+    };
+  } else {
+    ctx.status = 401;
+  };
+};
+
+// 撤回文章（admin）
+export const backArticle = async (ctx, next) => {
+  if (ctx.state.user.isAdmin) {
+    const body = ctx.params;
+  
+    if (body !== null && body !== ' ') {
+      const changeInfo = await List.findOneAndUpdate({url: body.id}, {$set: {
+        checked: false
+      }}, {multi: false});
+      
+      if (changeInfo) {
+        ctx.body = {
+          status: 1,
+          msg: changeInfo
+        };
+      } else {
+        console.log(changeInfo);
+        ctx.body = {
+          status: 0
+        };
+      };
+    } else {
+      ctx.body = {
+        status: 0
+      };
+    };
+  } else {
+    ctx.status = 401;
+  };
+};
+
+// 删除文章（admin)
+export const delArticle = async (ctx, next) => {
+  if (ctx.state.user.isAdmin) {
+    const body = ctx.params;
+  
+    if (body !== null && body !== ' ') {
+      const changeInfo = await List.findOneAndUpdate({url: body.id}, {$set: {
+        dele: true
+      }}, {multi: false});
+      
+      if (changeInfo) {
+        ctx.body = {
+          status: 1,
+          msg: changeInfo
+        };
+      } else {
+        console.log(changeInfo);
+        ctx.body = {
+          status: 0
+        };
+      };
+    } else {
+      ctx.body = {
+        status: 0
+      };
+    };
+  } else {
+    ctx.status = 401;
+  };
 };

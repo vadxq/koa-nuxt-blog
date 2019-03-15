@@ -1,4 +1,4 @@
-const Cookie = process.client ? require('js-cookie') : undefined
+const Cookie = require('js-cookie')
 
 export default function ({
   $axios,
@@ -9,8 +9,9 @@ export default function ({
     let token
     if (process.browser) {
       token = window.localStorage.getItem('token')
-    } else {
-      token = Cookie.get('auth')
+    }
+    if (process.server) {
+      token = store.state.auth
     }
     $axios.setHeader('Authorization', 'Bearer ' + token)
   })

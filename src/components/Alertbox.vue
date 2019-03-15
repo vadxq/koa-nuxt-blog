@@ -22,8 +22,6 @@ export default {
   methods: {
     init () {
       setTimeout(() => {
-        // this.alertMsg.status = ''
-        // this.alertMsg.msg = ''
         let data = {
           status: '',
           msg: ''
@@ -40,17 +38,8 @@ export default {
     this.$store.watch((state) => (state.alertMsg), this.handleAuthUpdate)
   },
   computed: {
-    // ...mapGetters ({
-    //   alertMsg: this.$store.state.alertMsg
-    // }),
-    // getMsg () {
-    //   return this.$store.state.alertMsg
-    // }
   },
   watch: {
-    // getMsg (data) {
-    //   this.alertMsgs = data
-    // },
     '$store.state.alertMsg': {
       handler: function () {
         this.alertMsgs = this.$store.state.alertMsg
