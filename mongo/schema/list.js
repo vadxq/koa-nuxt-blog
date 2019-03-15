@@ -12,8 +12,14 @@ const ListSchema = new Schema({
     type: Date,
     default: Date.now()
   },
-  views: Number, // 浏览数
-  links: Number, // 点赞数
+  views: {
+    type: Number,
+    default: 1
+  }, // 浏览数
+  links: {
+    type: Number,
+    default: 1
+  }, // 点赞数
   description: String, // 简述
   content: String, // 内容
   coverimg: String, // 封面图
