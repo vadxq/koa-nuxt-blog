@@ -3,7 +3,7 @@
     <h1 class="error-title">
       {{ error.statusCode }}
     </h1>
-    <h2 class="error-info">
+    <h2 class="err-info">
       {{ error.message }}
     </h2>
     <nuxt-link class="error-button" to="/">
@@ -25,7 +25,7 @@ export default {
 }
 </script>
 
-<style>
+<style scope>
 .error {
   text-align: center;
   margin: 26vh 0;
@@ -35,7 +35,7 @@ export default {
   font-weight: bold;
   /* margin-top: 70px; */
 }
-.error-info {
+.err-info {
   color: #666;
   font-weight: normal;
 }

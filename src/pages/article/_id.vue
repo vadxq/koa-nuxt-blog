@@ -19,6 +19,15 @@ export default {
       return { item: data.msg }
     }
   },
+  head () {
+    return {
+      title: this.item.title + '-vadxq-清竹茶馆',
+      meta: [
+        { hid: 'description', name: 'description', content: `${this.item.description}-vadxq-清竹茶馆` }
+        // { hid: 'keywords', name: 'keywords', content: `${this.articleMsg.abstract}` }
+      ]
+    }
+  },
   data () {
     return {
       item: {}

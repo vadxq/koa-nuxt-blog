@@ -33,7 +33,7 @@
       </v-card-title>
 
       <v-card-actions class="grey darken-10 justify-center">
-        &copy;2019 —
+        &copy;2016 — {{nowyear}}
         <strong>vadxq</strong>
       </v-card-actions>
     </v-card>
@@ -44,9 +44,10 @@
 export default {
   data() {
     return {
-    };
+      nowyear: new Date().getFullYear()
+    }
   }
-};
+}
 </script>
 
 <style scoped>

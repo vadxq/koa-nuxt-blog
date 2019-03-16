@@ -1,5 +1,3 @@
-const pkg = require('./package')
-
 
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 
@@ -10,14 +8,17 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: pkg.name,
+    title: '清竹茶馆博客-vadxq',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { name: 'viewport', content: 'width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no' },
+      { hid: 'keywords', name: 'keywords', content: 'vadxq,清竹茶馆,宇许清竹,清竹博客,vadxq.com,blog.vadxq.com' },
+      { name: 'format-detection', content: 'telephone=no' },
+      { hid: 'description', name: 'description', content: '清竹茶馆博客：vadxq的个人博客，欢迎来到宇许清竹的清竹茶馆小窝~' },
+      { name: 'renderer', content: 'webkit' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: 'https://qnimg.vadxq.com/blog/2017/logo.jpg' },
       {
         rel: 'stylesheet',
         href:
@@ -29,8 +30,24 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#009688' },
 
+  manifest: {
+    short_name: '清竹茶馆',
+    name: '清竹茶馆博客',
+    description: 'vadxq的清竹茶馆博客',
+    theme_color: '#009688',
+    background_color: '#f5f5f5',
+    // display: 'standalone',
+    // publicPath: '',
+    // start_url: '',
+    // lang: '',
+    icons: [
+      {
+        'src': 'https://qnimg.vadxq.com/blog/2017/logo.jpg'
+      }
+    ]
+  },
   /*
   ** Global CSS
   */
@@ -49,6 +66,7 @@ module.exports = {
     '@/plugins/vuetify',
     '@/plugins/axios',
     { src: '@/plugins/quill', ssr: false },
+    // { src: '~/plugins/ga', ssr: false },
     { src: '~/plugins/ckedit', ssr: false }
   ],
 
@@ -62,7 +80,10 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-83694330-2'
+    }]
   ],
   /*
   ** Axios module configuration

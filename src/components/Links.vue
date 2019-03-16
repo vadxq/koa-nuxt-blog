@@ -63,7 +63,7 @@ export default {
           title: "vibiu",
           url: "http://blog.vibiu.cn/",
           desc: "vibiu,one good man",
-          icon: "http://blog.vibiu.cn/images/avatar.jpg"
+          icon: "https://qnimg.vadxq.com/blog/2017/vibiu.jpg"
         }
       ]
     };

@@ -1,5 +1,5 @@
 <template>
-  <v-container  fluid grid-list-sm>
+  <v-container fluid grid-list-sm>
     <v-flex justify-center text-xs-center>
       <div >
         <img src="https://qnimg.vadxq.com/blog/2016/blogheadimg20160517.jpg" alt="avatar">
@@ -15,6 +15,8 @@
 </template>
 
 <script>
-
+export default {
+  
+}
 </script>
 
