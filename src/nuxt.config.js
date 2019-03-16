@@ -65,9 +65,9 @@ module.exports = {
   plugins: [
     '@/plugins/vuetify',
     '@/plugins/axios',
-    { src: '@/plugins/quill', ssr: false },
+    { src: '@/plugins/quill', ssr: false }
     // { src: '~/plugins/ga', ssr: false },
-    { src: '~/plugins/ckedit', ssr: false }
+    // { src: '~/plugins/ckedit', ssr: false }
   ],
 
   router:{
