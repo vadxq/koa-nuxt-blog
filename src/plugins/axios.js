@@ -12,6 +12,9 @@ export default function ({
     }
     if (process.server) {
       token = store.state.auth
+      if (!token) {
+        token = Cookie.get('auth')
+      }
     }
     $axios.setHeader('Authorization', 'Bearer ' + token)
   })

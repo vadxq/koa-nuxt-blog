@@ -23,8 +23,16 @@ export default {
       item: {}
     }
   },
+  methods: {
+    async getItem() {
+      let res = await $axios.get(`https://blog.vadxq.com/api/admin/one/${params.id}`)
+      if (res.data.status) {
+        this.item = this.data.msg
+      }
+    }
+  },
   created () {
-
+    // this.getItem()
   }
 }
 </script>

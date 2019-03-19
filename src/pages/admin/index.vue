@@ -46,7 +46,7 @@
                 
                 
                 <v-spacer></v-spacer>
-                <v-btn icon :to="'/admin/' + item.url">
+                <v-btn icon :to="'/admin/article/' + item.url" target="_blank">
                   <v-icon>keyboard_arrow_right</v-icon>
                 </v-btn>
               </v-card-actions>
@@ -116,6 +116,12 @@ export default {
     }
   },
   methods: {
+    async getAdminList () {
+      let res = await this.$axios.get('https://blog.vadxq.com/api/admin/list')
+      if (res.data.status) {
+        this.list = res.data.info
+      }
+    },
     async editArticle (id, status) {
       this.isModel = true
       this.activeId = id
@@ -190,6 +196,9 @@ export default {
         }
       }
     }
+  },
+  mounted() {
+    // this.getAdminList()
   },
 }
 </script>

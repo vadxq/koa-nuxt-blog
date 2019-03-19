@@ -25,6 +25,7 @@
             </v-card-title>
             <v-card-actions>
               <v-btn flat color="grey">{{item.createtime.slice(0,10)}}</v-btn>
+              <v-btn flat color="grey">阅读：{{item.views}}</v-btn>
               <v-spacer></v-spacer>
               <v-btn icon :href="'/article/' + item.url" target="_blank">
                 <v-icon>keyboard_arrow_right</v-icon>
@@ -50,7 +51,7 @@ export default {
   // },
   data () {
     return {
-      list: []
+      // list: []
     }
   },
   props: ['list']
