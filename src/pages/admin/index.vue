@@ -35,18 +35,17 @@
                 </div>
                 <div class="editbtns">
                   <v-btn flat @click="editArticle(item.url, 0)" color="success">编辑</v-btn>
-                  <v-btn v-if="!item.checked" flat color="info" @click="checkArticle(item.url, 1)">审核</v-btn>
-                  <v-btn v-if="item.checked" flat color="warning" @click="backArticle(item.url, 2)">撤回</v-btn>
+                  <v-btn v-if="!item.checked" color="info" @click="checkArticle(item.url, 1)">审核</v-btn>
+                  <v-btn v-if="item.checked"  color="warning" @click="backArticle(item.url, 2)">撤回</v-btn>
                   <v-btn flat color="error" @click="delArticle(item.url, 3)">删除</v-btn>
                 </div>
               </v-card-title>
 
               <v-card-actions>
                 <v-btn flat color="grey">{{item.createtime.slice(0,10)}}</v-btn>
-                
-                
+                <v-btn flat color="grey">阅读：{{item.views}}</v-btn>
                 <v-spacer></v-spacer>
-                <v-btn icon :to="'/admin/article/' + item.url" target="_blank">
+                <v-btn icon :to="'/admin/' + item.url" >
                   <v-icon>keyboard_arrow_right</v-icon>
                 </v-btn>
               </v-card-actions>
@@ -69,7 +68,6 @@
               </div>
               <v-text-field v-model="article.url" label="url" required></v-text-field>
               <v-text-field v-model="article.title" label="title" required></v-text-field>
-              <v-text-field v-model="article.description" label="description" required></v-text-field>
               <v-textarea v-model="article.description" label="description" required></v-textarea>
               <v-text-field v-model="article.coverimg" label="coverimg" required></v-text-field>
               <Edit  />
@@ -98,6 +96,7 @@ export default {
       return { list: data.info }
     }
   },
+  mmiddleware: ['authenticated'],
   components: {
     Edit
   },
@@ -140,30 +139,33 @@ export default {
       }
     },
     async checkArticle (id, status) {
-      this.isModel = true
+      // this.isModel = true
       this.activeId = id
       this.activeStatus = status
       let res = await this.$axios.get(`https://blog.vadxq.com/api/admin/check/${this.activeId}`)
       if (res.data.status) {
         console.log(res.data)
+        this.getAdminList()
       }
     },
     async backArticle (id, status) {
-      this.isModel = true
+      // this.isModel = true
       this.activeId = id
       this.activeStatus = status
       let res = await this.$axios.get(`https://blog.vadxq.com/api/admin/back/${this.activeId}`)
       if (res.data.status) {
         console.log(res.data)
+        this.getAdminList()
       }
     },
     async delArticle (id, status) {
-      this.isModel = true
+      // this.isModel = true
       this.activeId = id
       this.activeStatus = status
       let res = await this.$axios.get(`https://blog.vadxq.com/api/admin/del/${this.activeId}`)
       if (res.data.status) {
         console.log(res.data)
+        this.getAdminList()
       }
     },
     async addArticle(status) {
@@ -184,16 +186,20 @@ export default {
         if (res.data.status) {
           console.log(res.data)
           this.isModel = false
+          this.getAdminList()
         }
       }
     },
     async putMsg () {
-      this.article.content = this.$store.content
+      this.article.content = this.$store.state.content
       if (this.article.title && this.article.description && this.article.coverimg && this.article.content && this.article.url) {
-        let res = await this.$axios.put(`https://blog.vadxq.com/api/admin/one/${this.article.url}`)
+        let res = await this.$axios.put(`https://blog.vadxq.com/api/admin/one/${this.article.url}`, this.article)
         if (res.data.status) {
           console.log(res.data)
+          this.getAdminList()
         }
+      } else {
+        console.log(this.article)
       }
     }
   },

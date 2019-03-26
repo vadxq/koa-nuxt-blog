@@ -76,9 +76,7 @@ export const changeArticle = async (ctx, next) => {
         content: body.content,
         description: body.description,
         coverimg: body.coverimg,
-        url: body.url,
-        checked: body.checked,
-        dele: body.dele
+        url: body.url
       }}, {multi: false});
       
       if (changeInfo) {

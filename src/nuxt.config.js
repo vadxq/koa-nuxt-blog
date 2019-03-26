@@ -37,16 +37,16 @@ module.exports = {
     name: '清竹茶馆博客',
     description: 'vadxq的清竹茶馆博客',
     theme_color: '#009688',
-    background_color: '#f5f5f5'
+    background_color: '#f5f5f5',
     // display: 'standalone',
     // publicPath: '',
     // start_url: '',
     // lang: '',
-    // icons: [
-    //   {
-    //     'src': 'https://qnimg.vadxq.com/blog/2017/logo.jpg'
-    //   }
-    // ]
+    icons: [
+      {
+        'src': 'https://qnimg.vadxq.com/blog/2017/logo.jpg'
+      }
+    ]
   },
   /*
   ** Global CSS
@@ -70,9 +70,9 @@ module.exports = {
     // { src: '~/plugins/ckedit', ssr: false }
   ],
 
-  router:{
-    middleware:['authenticated']
-  },
+  // router:{
+  //   middleware:['authenticated']
+  // },
 
   /*
   ** Nuxt.js modules

@@ -3,7 +3,7 @@
     <div
       v-if="editorOption"
       class="quill-editor"
-      v-model="$store.state.content"
+      :value="$store.state.content"
       @change="onEditorChange($event)"
       @blur="onEditorBlur($event)"
       @focus="onEditorFocus($event)"

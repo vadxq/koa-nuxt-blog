@@ -33,9 +33,12 @@
       </v-card-title>
 
       <v-card-actions class="grey darken-10 justify-center">
-        <p>赣ICP备16004519号-1</p>
-        <p>&copy;2016 — {{nowyear}}
-        <strong>vadxq</strong></p>
+          <p>本站距离十年老站还须努力{{10 - (nowyear - 2016)}}年</p>
+      </v-card-actions>
+      <v-card-actions class="grey darken-10 justify-center">
+          <p>赣ICP备16004519号-1 &copy;{{nowyear}}
+            PoweredBy <strong>vadxq</strong>
+          </p>
       </v-card-actions>
     </v-card>
   </v-footer>

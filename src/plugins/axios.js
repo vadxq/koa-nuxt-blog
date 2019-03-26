@@ -11,11 +11,12 @@ export default function ({
       token = window.localStorage.getItem('token')
     }
     if (process.server) {
-      token = store.state.auth
-      if (!token) {
+      // token = store.state.auth
+      // if (!token) {
         token = Cookie.get('auth')
-      }
+      // }
     }
+    // token = store.state.auth
     $axios.setHeader('Authorization', 'Bearer ' + token)
   })
 

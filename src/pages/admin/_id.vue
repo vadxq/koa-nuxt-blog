@@ -18,6 +18,7 @@ export default {
       return { item: data.msg }
     }
   },
+  mmiddleware: ['authenticated'],
   data () {
     return {
       item: {}
