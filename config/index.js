@@ -1,8 +1,8 @@
 // mongoose path
-export const dbPath = 'mongodb://koanuxtblog:koanuxtblog_vadxq@127.0.0.1:2330/koanuxtblog?authSource=admin';
+export const dbPath = '';
 
 export const opt = {
-  auth: { 'authSource': 'admin' }
+  useNewUrlParser: true
 }
 // server port
 export const port = 7190;

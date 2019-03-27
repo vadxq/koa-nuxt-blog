@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { dbPath, opt } from '../config';
+import { dbPath } from '../config';
 
 require('./schema/list');
 require('./schema/user');
@@ -7,10 +7,10 @@ require('./schema/user');
 export const database = () => {
   mongoose.set('debug', true);
 
-  mongoose.connect(dbPath, opt);
+  mongoose.connect(dbPath);
 
   mongoose.connection.on('disconnected', () => {
-    mongoose.connect(dbPath, opt);
+    mongoose.connect(dbPath);
   });
 
   mongoose.connection.on('error', err => console.log(err));
