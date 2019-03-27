@@ -59,8 +59,8 @@ module.exports = {
     'quill/dist/quill.bubble.css',
     'quill/dist/quill.core.css',
     '~static/skins/ui/oxide/skin.min.css',
-    '~static/tinymce/skins/ui/oxide/content.min.css',
-    '~static/tinymce/skins/content/default/content.min.css'
+    '~static/skins/ui/oxide/content.min.css',
+    '~static/skins/content/default/content.min.css'
   ],
 
   /*

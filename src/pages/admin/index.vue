@@ -87,7 +87,7 @@
 </template>
 
 <script>
-import Edit from '~/components/Edit'
+import Edit from '~/components/tincymc'
 
 export default {
   async asyncData ({ $axios }) {
