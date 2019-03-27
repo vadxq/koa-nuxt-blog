@@ -1,5 +1,6 @@
 
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
+const webpack = require("webpack")
 
 module.exports = {
   mode: 'universal',
@@ -56,7 +57,10 @@ module.exports = {
     '~/assets/style/main.css',
     'quill/dist/quill.snow.css',
     'quill/dist/quill.bubble.css',
-    'quill/dist/quill.core.css'
+    'quill/dist/quill.core.css',
+    '~static/skins/ui/oxide/skin.min.css',
+    '~static/tinymce/skins/ui/oxide/content.min.css',
+    '~static/tinymce/skins/content/default/content.min.css'
   ],
 
   /*
@@ -65,7 +69,11 @@ module.exports = {
   plugins: [
     '@/plugins/vuetify',
     '@/plugins/axios',
-    { src: '@/plugins/quill', ssr: false }
+    { src: '~/plugins/quill', ssr: false },
+    // { src: '@/plugins/vue-mavon-editor', sr: false },
+    // { src: '~/plugins/wangeditor', ssr: false }
+    {src: '~/plugins/vue2-editor', ssr: false},
+    {src: '~/plugins/tinymce', ssr: false}
     // { src: '~/plugins/ga', ssr: false },
     // { src: '~/plugins/ckedit', ssr: false }
   ],
@@ -97,12 +105,19 @@ module.exports = {
   */
   build: {
     transpile: ['vuetify/lib'],
-    plugins: [new VuetifyLoaderPlugin()],
+    plugins: [
+      new VuetifyLoaderPlugin(),
+      new webpack.ProvidePlugin({
+        'window.Quill': 'quill/dist/quill.js',
+        'Quill': 'quill/dist/quill.js'
+      })
+    ],
     loaders: {
       stylus: {
         import: ["~assets/style/variables.styl"]
       }
     },
+    vendor: ['tinymce-vue-2'],
     
     /*
     ** You can extend webpack config here
