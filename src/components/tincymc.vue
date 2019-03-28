@@ -1,6 +1,6 @@
 <template>
     <no-ssr>
-        <tiny-mce id="desc" v-model="content" @change="changeContent"
+        <tiny-mce id="desc" :value="$store.state.content" v-model="content" @change="changeContent"
         :other-props="{
           menubar: 'file edit insert view format table', 
           plugins: plugins,
@@ -17,7 +17,7 @@
 export default {
   data() {
     return {
-      content: this.$store.state.content,
+      content: '',
       plugins: `link image advlist autolink lists
         charmap print textcolor contextmenu preview
         code wordcount table colorpicker hr anchor
@@ -53,6 +53,12 @@ export default {
   },
   methods: {
     changeContent () {
+      console.log('change')
+      this.$store.commit('setContent', this.content)
+    }
+  },
+  watch: {
+    content () {
       this.$store.commit('setContent', this.content)
     }
   },

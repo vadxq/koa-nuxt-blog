@@ -168,7 +168,7 @@ export const getDeArticle = async (ctx, next) => {
   if (ctx.state.user.isAdmin) {
     const body = ctx.params;
     if (body !== null && body !== ' ') {
-      const getone = await List.findOne({url: body.id, dele: false, checked: true}, {
+      const getone = await List.findOne({url: body.id, dele: false}, {
         url: 1,
         title: 1,
         content: 1,

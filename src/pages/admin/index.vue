@@ -132,7 +132,7 @@ export default {
         url: ''
       }
       this.$store.commit('setContent', '')
-      let res = await this.$axios.get(`https://blog.vadxq.com/api/view/one/${this.activeId}`)
+      let res = await this.$axios.get(`https://blog.vadxq.com/api/admin/one/${this.activeId}`)
       if (res.data.status) {
         this.article = res.data.msg
         this.$store.commit('setContent', this.article.content)
