@@ -70,13 +70,13 @@
               <v-text-field v-model="article.title" label="title" required></v-text-field>
               <v-textarea v-model="article.description" label="description" required></v-textarea>
               <v-text-field v-model="article.coverimg" label="coverimg" required></v-text-field>
-              <Edit  />
+              <Edit :id="id" />
             <!-- </v-layout> -->
           </v-container>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click="isModel = false">Close</v-btn>
+          <v-btn color="blue darken-1" flat @click="changeModel()">Close</v-btn>
           <v-btn v-if="this.activeStatus == 0" color="blue darken-1" flat @click="putMsg">提交</v-btn>
           <v-btn v-if="this.activeStatus == 4" color="blue darken-1" flat @click="postMsg">提交</v-btn>
         </v-card-actions>
@@ -103,6 +103,7 @@ export default {
   data () {
     return {
       list: [],
+      id: 'id' + Date.now(),
       activeId: '',
       isModel: false,
       activeStatus: '', // 0,编辑。1审核，2撤回，3删除,4新文章
@@ -122,6 +123,7 @@ export default {
       }
     },
     async editArticle (id, status) {
+      this.id = 'id' + Date.now()
       this.isModel = true
       this.activeId = id
       this.activeStatus = status
@@ -169,6 +171,7 @@ export default {
       }
     },
     async addArticle(status) {
+      this.id = 'id' + Date.now()
       this.isModel = true
       this.article = {
         title: '',
@@ -201,6 +204,10 @@ export default {
       } else {
         console.log(this.article)
       }
+    },
+    changeModel () {
+      this.isModel = false
+      // this.$store.commit('setContent', '')
     }
   },
   mounted() {

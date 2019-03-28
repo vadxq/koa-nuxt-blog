@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import TinyMCE from 'tinymce-vue-2'
-import 'tinymce/tinymce'
+import tinymce from 'tinymce/tinymce'
 import 'tinymce/plugins/advlist/plugin' // 项目编号。toolbar：bullist。
 import 'tinymce/plugins/autolink/plugin' // autolink：自动加链接。
 import 'tinymce/plugins/link/plugin' // link：插入链接。
@@ -40,4 +40,7 @@ import Theme from 'tinymce/themes/silver/index'
 if (process.env.BROWSER) {
   window.Theme = Theme
 }
+// if(process.browser) {
+//   window.$tinymce = tinymce
+// }
 Vue.component('tiny-mce', TinyMCE)

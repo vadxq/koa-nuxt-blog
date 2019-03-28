@@ -1,6 +1,6 @@
 <template>
     <no-ssr>
-        <tiny-mce id="desc" :value="$store.state.content" v-model="content" @change="changeContent"
+      <tiny-mce :id="id" :value="$store.state.content" v-model="content" @input="changeContent"
         :other-props="{
           menubar: 'file edit insert view format table', 
           plugins: plugins,
@@ -9,7 +9,7 @@
           min_height: 300,
         }"
         :toolbar="toolbar">
-  </tiny-mce>
+      </tiny-mce>
   </no-ssr>
 </template>
 
@@ -27,16 +27,16 @@ export default {
         colorpicker textpattern autoresize fullscreen imagetools
         `,
       // toolbar: [`
-      // bold italic underline strikethrough |
-      // fontsizeselect styleselect formatselect fontselect |
-      // forecolor backcolor |
-      // alignleft aligncenter alignright alignjustify |
-      // bullist numlist |
-      // outdent indent blockquote |
-      // undo redo |
-      // link unlink image code |
-      // removeformat emoticons |
-      // rotateleft rotateright flipv fliph editimage imageoptions
+        // bold italic underline strikethrough |
+        // fontsizeselect styleselect formatselect fontselect |
+        // forecolor backcolor |
+        // alignleft aligncenter alignright alignjustify |
+        // bullist numlist |
+        // outdent indent blockquote |
+        // undo redo |
+        // link unlink image code |
+        // removeformat emoticons |
+        // rotateleft rotateright flipv fliph editimage imageoptions
       // `]
       toolbar: [`
         bold italic fontsizeselect formatselect |
@@ -51,16 +51,37 @@ export default {
       `]
     }
   },
+  props: [
+    'id'
+  ],
   methods: {
-    changeContent () {
+    changeContent (data) {
       console.log('change')
-      this.$store.commit('setContent', this.content)
+      // if (this.content !== this.$store.state.content) {
+      //   this.content = this.$store.state.content
+      // } else {
+        this.content = data
+        this.$store.commit('setContent', this.content)
+      // }
+    },
+    async init () {
+      // document.querySelector('#' + id).innerHTML = this.$store.state.content
     }
   },
-  watch: {
-    content () {
-      this.$store.commit('setContent', this.content)
-    }
+  created() {
+    this.content = this.$store.state.content
   },
+  mounted() {
+    // this.init()
+    // setTimeout(() => {
+    this.content = this.$store.state.content
+      
+    // }, 100);
+  },
+  // watch: {
+  //   '$store.state.content' () {
+  //     this.content = this.$store.state.content
+  //   }
+  // }
 }
 </script>
