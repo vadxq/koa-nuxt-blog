@@ -13,6 +13,7 @@ RUN npm install
 
 # RUN npm run build
 RUN ./node_modules/.bin/nuxt build
+# RUN node --trace-deprecation node_modules/nuxt/bin/nuxt-build
 
 #解决nuxtjs问题
 ENV NODE_ENV=production
