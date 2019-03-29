@@ -1,6 +1,6 @@
 
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
-const webpack = require("webpack")
+// const webpack = require("webpack")
 
 module.exports = {
   mode: 'universal',
@@ -107,17 +107,17 @@ module.exports = {
     transpile: ['vuetify/lib'],
     plugins: [
       new VuetifyLoaderPlugin(),
-      new webpack.ProvidePlugin({
-        'window.Quill': 'quill/dist/quill.js',
-        'Quill': 'quill/dist/quill.js'
-      })
+      // new webpack.ProvidePlugin({
+      //   'window.Quill': 'quill/dist/quill.js',
+      //   'Quill': 'quill/dist/quill.js'
+      // })
     ],
     loaders: {
       stylus: {
         import: ["~assets/style/variables.styl"]
       }
     },
-    vendor: ['tinymce-vue-2'],
+    // vendor: ['tinymce-vue-2'],
     
     /*
     ** You can extend webpack config here
