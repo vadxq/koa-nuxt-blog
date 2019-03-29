@@ -55,9 +55,9 @@ module.exports = {
   css: [
     '~/assets/style/app.styl',
     '~/assets/style/main.css',
-    'quill/dist/quill.snow.css',
-    'quill/dist/quill.bubble.css',
-    'quill/dist/quill.core.css',
+    // 'quill/dist/quill.snow.css',
+    // 'quill/dist/quill.bubble.css',
+    // 'quill/dist/quill.core.css',
     '~static/skins/ui/oxide/skin.min.css',
     '~static/skins/ui/oxide/content.min.css',
     '~static/skins/content/default/content.min.css'
@@ -69,11 +69,11 @@ module.exports = {
   plugins: [
     '@/plugins/vuetify',
     '@/plugins/axios',
-    { src: '~/plugins/quill', ssr: false },
+    // { src: '~/plugins/quill', ssr: false },
     // { src: '@/plugins/vue-mavon-editor', sr: false },
     // { src: '~/plugins/wangeditor', ssr: false }
-    {src: '~/plugins/vue2-editor', ssr: false},
-    {src: '~/plugins/tinymce', ssr: false}
+    {src: '~/plugins/vue2-editor', ssr: false}
+    // {src: '~/plugins/tinymce', ssr: false}
     // { src: '~/plugins/ga', ssr: false },
     // { src: '~/plugins/ckedit', ssr: false }
   ],
