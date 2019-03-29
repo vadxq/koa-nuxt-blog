@@ -12,7 +12,7 @@ COPY . /src
 RUN npm install
 
 # RUN npm run build
-RUN ./node_modules/.bin/nuxt build
+# RUN ./node_modules/.bin/nuxt build
 # RUN node --trace-deprecation node_modules/nuxt/bin/nuxt-build
 # 可怜,机器内存不足导致build失败...准备本地build.对应的将.nuxt移出.gitignore
 # 正常模式在这里使用build
