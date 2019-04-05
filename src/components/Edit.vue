@@ -104,3 +104,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.ql-container {
+  min-height: 30vh;
+}
+</style>

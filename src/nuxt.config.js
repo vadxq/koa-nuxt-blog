@@ -9,7 +9,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: '清竹茶馆博客-vadxq',
+    title: '清竹茶馆博客',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no' },
@@ -57,10 +57,7 @@ module.exports = {
     '~/assets/style/main.css',
     'quill/dist/quill.snow.css',
     'quill/dist/quill.bubble.css',
-    'quill/dist/quill.core.css',
-    '~static/skins/ui/oxide/skin.min.css',
-    '~static/skins/ui/oxide/content.min.css',
-    '~static/skins/content/default/content.min.css'
+    'quill/dist/quill.core.css'
   ],
 
   /*
@@ -69,13 +66,7 @@ module.exports = {
   plugins: [
     '@/plugins/vuetify',
     '@/plugins/axios',
-    { src: '~/plugins/quill', ssr: false },
-    // { src: '@/plugins/vue-mavon-editor', sr: false },
-    // { src: '~/plugins/wangeditor', ssr: false }
-    {src: '~/plugins/vue2-editor', ssr: false}
-    // {src: '~/plugins/tinymce', ssr: false}
-    // { src: '~/plugins/ga', ssr: false },
-    // { src: '~/plugins/ckedit', ssr: false }
+    { src: '~/plugins/quill', ssr: false }
   ],
 
   // router:{
@@ -86,7 +77,6 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     ['@nuxtjs/google-analytics', {
@@ -117,8 +107,6 @@ module.exports = {
         import: ["~assets/style/variables.styl"]
       }
     },
-    // vendor: ['tinymce-vue-2'],
-    
     /*
     ** You can extend webpack config here
     */
