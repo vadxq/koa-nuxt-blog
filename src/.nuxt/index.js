@@ -17,6 +17,7 @@ import nuxt_plugin_googleanalytics_ba0bcc72 from 'nuxt_plugin_googleanalytics_ba
 import nuxt_plugin_axios_2bd5f8ff from 'nuxt_plugin_axios_2bd5f8ff' // Source: .\\axios.js (mode: 'all')
 import nuxt_plugin_vuetify_e5914fcc from 'nuxt_plugin_vuetify_e5914fcc' // Source: ..\\plugins\\vuetify (mode: 'all')
 import nuxt_plugin_axios_2228ef02 from 'nuxt_plugin_axios_2228ef02' // Source: ..\\plugins\\axios (mode: 'all')
+import nuxt_plugin_quill_33a67562 from 'nuxt_plugin_quill_33a67562' // Source: ..\\plugins\\quill (mode: 'client')
 import nuxt_plugin_vue2editor_60d31c90 from 'nuxt_plugin_vue2editor_60d31c90' // Source: ..\\plugins\\vue2-editor (mode: 'client')
 
 // Component: <NoSsr>
@@ -179,6 +180,10 @@ async function createApp(ssrContext) {
 
   if (typeof nuxt_plugin_axios_2228ef02 === 'function') {
     await nuxt_plugin_axios_2228ef02(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_quill_33a67562 === 'function') {
+    await nuxt_plugin_quill_33a67562(app.context, inject)
   }
 
   if (process.client && typeof nuxt_plugin_vue2editor_60d31c90 === 'function') {

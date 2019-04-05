@@ -5,6 +5,12 @@ import '..\\assets\\style\\app.styl'
 
 import '..\\assets\\style\\main.css'
 
+import '..\\node_modules\\quill\\dist\\quill.snow.css'
+
+import '..\\node_modules\\quill\\dist\\quill.bubble.css'
+
+import '..\\node_modules\\quill\\dist\\quill.core.css'
+
 import '..\\static\\skins\\ui\\oxide\\skin.min.css'
 
 import '..\\static\\skins\\ui\\oxide\\content.min.css'
@@ -109,6 +115,8 @@ export default {
     },
 
     setLayout(layout) {
+      if(layout && typeof layout !== 'string') throw new Error('[nuxt] Avoid using non-string value as layout property.')
+
       if (!layout || !layouts['_' + layout]) {
         layout = 'default'
       }
