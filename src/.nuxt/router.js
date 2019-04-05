@@ -6,7 +6,6 @@ const _352b91b0 = () => interopDefault(import('..\\pages\\admin\\index.vue' /* w
 const _618d2ca8 = () => interopDefault(import('..\\pages\\login.vue' /* webpackChunkName: "pages_login" */))
 const _74ce1036 = () => interopDefault(import('..\\pages\\me.vue' /* webpackChunkName: "pages_me" */))
 const _fd42b4a6 = () => interopDefault(import('..\\pages\\post.vue' /* webpackChunkName: "pages_post" */))
-const _0fe5089f = () => interopDefault(import('..\\pages\\test.vue' /* webpackChunkName: "pages_test" */))
 const _1e5b7fd0 = () => interopDefault(import('..\\pages\\admin\\_id.vue' /* webpackChunkName: "pages_admin__id" */))
 const _04658911 = () => interopDefault(import('..\\pages\\article\\_id.vue' /* webpackChunkName: "pages_article__id" */))
 const _0591c695 = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
@@ -101,10 +100,6 @@ export function createRouter() {
       path: "/post",
       component: _fd42b4a6,
       name: "post"
-    }, {
-      path: "/test",
-      component: _0fe5089f,
-      name: "test"
     }, {
       path: "/admin/:id",
       component: _1e5b7fd0,
