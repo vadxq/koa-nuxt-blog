@@ -1,4 +1,5 @@
 // mongoose path
+// product to sec.js
 export const dbPath = '';
 
 export const opt = {
