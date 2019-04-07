@@ -1,7 +1,9 @@
 import mongoose from 'mongoose';
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
-import { jwt_secret } from '../config/index'
+// import { jwt_secret } from '../config/index'
+import { jwt_secret } from '../config/sec'
+
 
 require('../mongo/schema/user');
 const User = mongoose.model('User');

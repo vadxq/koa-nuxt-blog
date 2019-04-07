@@ -2,7 +2,11 @@ import Koa from 'koa';
 import Router from 'koa-router';
 // import KoaStatic from 'koa-static';
 import bodyParser from 'koa-bodyparser';
-import { port, jwt_secret } from './config/index';
+// import { port, jwt_secret } from './config/index';
+
+import { port } from './config/index';
+import { jwt_secret } from './config/sec';
+
 import json from 'koa-json';
 import koajwt from 'koa-jwt';
 import { errorHandle } from './middlewares/errorHandle';
