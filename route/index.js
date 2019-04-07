@@ -6,11 +6,14 @@ import schema from '../graphql/schema';
 const viewRouter = require('./view');
 const adminRouter = require('./admin');
 const userRouter = require('./user');
+const sitemapRouter = require('./sitemap');
+
 const router = require('koa-router')();
 
 router.use('/api/view', viewRouter.routes());
 router.use('/api/admin', adminRouter.routes());
 router.use('/api/user', userRouter.routes());
+router.use('/sitemap.xml', sitemapRouter.routes());
 
 router
   .post('/graphql', async (ctx, next) => {

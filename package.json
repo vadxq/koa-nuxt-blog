@@ -29,7 +29,8 @@
     "koa-jwt": "^3.5.1",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
-    "mongoose": "^5.4.11"
+    "mongoose": "^5.4.11",
+    "sitemap": "^2.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
