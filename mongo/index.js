@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 // import { dbPath } from '../config';
-import { dbPath } from '../sec';
+import { dbPath } from '../config/sec';
 
 require('./schema/list');
 require('./schema/user');
