@@ -89,6 +89,7 @@ export default {
     onEditorChange({ editor, html, text }) {
       // console.log("editor change!", editor, html, text)
       this.content = html
+      this.$store.commit('setContent', this.content)
     },
     initButton (){
       const sourceEditorButton = document.querySelector('.ql-sourceEditor')

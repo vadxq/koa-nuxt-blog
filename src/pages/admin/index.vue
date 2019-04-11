@@ -199,6 +199,7 @@ export default {
         let res = await this.$axios.put(`https://blog.vadxq.com/api/admin/one/${this.article.url}`, this.article)
         if (res.data.status) {
           console.log(res.data)
+          this.isModel = false
           this.getAdminList()
         }
       } else {
