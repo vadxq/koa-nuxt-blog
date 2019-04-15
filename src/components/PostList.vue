@@ -63,7 +63,6 @@ export default {
 }
 </script>
 
-
 <style scoped>
   .blog-title {
     line-height: 28px !important;
@@ -77,7 +76,29 @@ export default {
   .itemdesc {
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     overflow: hidden;
+    position: relative;
+    max-height: 4.5rem;
+    line-height: 1.5;
+  }
+  .itemdesc::before {
+    content: '...';
+    position: absolute;
+    z-index: 10;
+    bottom: 0;
+    right: 0;
+    width: 1.5rem;
+    background-color: white;
+  }
+
+  .itemdesc::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    z-index: 20;
+    width: 100%;
+    height: 100%;
+    background-color: white;
   }
 </style>
