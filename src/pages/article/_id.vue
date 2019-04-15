@@ -2,6 +2,11 @@
 <section>
   <v-container>
     <h1>{{item.title}}</h1>
+    <div>
+      <span class="grey--text">{{item.createtime.slice(0,10)}}</span>
+      <span class="grey--text"> 阅读：{{item.views}}</span>
+      <span class="grey--text"> vadxq</span>
+    </div>
     <v-divider></v-divider>
       <v-img aspect-ratio="1.5" :src="item.coverimg"></v-img>
     <v-layout row class="ql-container ql-snow">
@@ -52,6 +57,9 @@ h1 {
 }
 .v-image {
   max-height: 21rem;
+}
+.grey--text {
+  margin: 0rem 0.2rem;
 }
 </style>
 
