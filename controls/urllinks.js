@@ -3,7 +3,7 @@ require('../mongo/schema/urllinks');
 const Urllinks = mongoose.model('Urllinks');
 
 // 添加链接(admin)
-export const saveLink = async (ctx, next) => {
+export const saveUrllink = async (ctx, next) => {
   if (ctx.state.user.isAdmin) {
     const body = ctx.request.body;
     const info = new Urllinks(body);
@@ -26,7 +26,7 @@ export const saveLink = async (ctx, next) => {
 };
 
 // 获取列表
-export const fetchList = async (ctx, next) => {
+export const fetchUrllist = async (ctx, next) => {
   console.log('aaaa')
   const info = await Urllinks.find({
     dele: false
@@ -35,14 +35,21 @@ export const fetchList = async (ctx, next) => {
     date: 1,
     weight: 1,
     avtor: 1,
-    username: 1
+    username: 1,
+    id: 1
   });
   console.log(info)
 
   if (info.length) {
+    // 按权重排序
+    console.log(info, '1')
+    let infoList = await info.sort((a, b) => {
+      return Number(a.weight) - Number(b.weight)
+    }).reverse()
+    console.log(infoList, '2')
     ctx.body = {
       status: 1,
-      info: info
+      info: infoList
     };
   } else {
     ctx.body = {
@@ -51,30 +58,30 @@ export const fetchList = async (ctx, next) => {
   };
 };
 
-// 获取所有文章列表(admin)
-export const fetchAllList = async (ctx, next) => {
+// 修改链接(admin)
+export const putUrllink = async (ctx, next) => {
   if (ctx.state.user.isAdmin) {
-    const info = await List.find({
-      dele: false
-    }, {
-      url: 1,
-      title: 1,
-      createtime: 1,
-      updatetime: 1,
-      views: 1,
-      links: 1,
-      description: 1,
-      coverimg: 1,
-      checked: 1
-    });
-  
-    if (info.length) {
-      ctx.body = {
-        status: 1,
-        info: info
+    const body = ctx.request.body;
+
+    if (body !== null && body !== ' ') {
+      const changeInfo = await Urllinks.findByIdAndUpdate(body._id, {$set: {
+        avtor: body.avtor,
+        username: body.username,
+        url: body.url,
+        weight: body.weight
+      }}, {multi: false});
+
+      if (changeInfo) {
+        ctx.body = {
+          status: 1,
+          msg: changeInfo
+        };
+      } else {
+        ctx.body = {
+          status: 0
+        };
       };
     } else {
-      console.log(info);
       ctx.body = {
         status: 0
       };
@@ -85,12 +92,12 @@ export const fetchAllList = async (ctx, next) => {
 };
 
 // 删除文章（admin)
-export const delArticle = async (ctx, next) => {
+export const delUrllink = async (ctx, next) => {
   if (ctx.state.user.isAdmin) {
     const body = ctx.params;
   
     if (body !== null && body !== ' ') {
-      const changeInfo = await List.findOneAndUpdate({url: body.id}, {$set: {
+      const changeInfo = await Urllinks.findByIdAndUpdate(body.id, {$set: {
         dele: true
       }}, {multi: false});
       

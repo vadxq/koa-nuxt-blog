@@ -29,7 +29,7 @@ app.use(errorHandle());
 app.use(koajwt({
   secret: jwt_secret
 }).unless({
-  path: [/\/api\/user\/register/, /\/api\/user\/login/, /\/api\/view/, /\/sitemap.xml/]
+  path: [/\/api\/user\/register/, /\/api\/user\/login/, /\/api\/view/, /\/sitemap.xml/, /\/api\/url\/list/]
 }));
 
 // router.use('', GraphqlRouter.routes())
