@@ -1,12 +1,12 @@
 import mongoose from 'mongoose';
-require('../mongo/schema/urllinks');
-const Urllinks = mongoose.model('Urllinks');
+require('../mongo/schema/swaper');
+const Swaper = mongoose.model('Swaper');
 
-// 添加链接(admin)
-export const saveUrllink = async (ctx, next) => {
+// 添加封面图(admin)
+export const saveSwaper = async (ctx, next) => {
   if (ctx.state.user.isAdmin) {
     const body = ctx.request.body;
-    const info = new Urllinks(body);
+    const info = new Swaper(body);
     const saveInfo = await info.save();
   
     if (saveInfo) {
@@ -25,17 +25,17 @@ export const saveUrllink = async (ctx, next) => {
   };
 };
 
-// 获取列表
-export const fetchUrllist = async (ctx, next) => {
+// 获取封面图列表
+export const fetchSwaper = async (ctx, next) => {
   console.log('aaaa')
-  const info = await Urllinks.find({
+  const info = await Swaper.find({
     dele: false
   }, {
     url: 1,
     date: 1,
+    cover: 1,
+    title: 1,
     weight: 1,
-    avtor: 1,
-    username: 1,
     id: 1
   });
   console.log(info)
@@ -57,14 +57,14 @@ export const fetchUrllist = async (ctx, next) => {
 };
 
 // 修改链接(admin)
-export const putUrllink = async (ctx, next) => {
+export const putSwaper = async (ctx, next) => {
   if (ctx.state.user.isAdmin) {
     const body = ctx.request.body;
 
     if (body !== null && body !== ' ') {
-      const changeInfo = await Urllinks.findByIdAndUpdate(body._id, {$set: {
-        avtor: body.avtor,
-        username: body.username,
+      const changeInfo = await Swaper.findByIdAndUpdate(body._id, {$set: {
+        title: body.title,
+        cover: body.cover,
         url: body.url,
         weight: body.weight
       }}, {multi: false});
@@ -90,12 +90,12 @@ export const putUrllink = async (ctx, next) => {
 };
 
 // 删除文章（admin)
-export const delUrllink = async (ctx, next) => {
+export const delSwaper = async (ctx, next) => {
   if (ctx.state.user.isAdmin) {
     const body = ctx.params;
   
     if (body !== null && body !== ' ') {
-      const changeInfo = await Urllinks.findByIdAndUpdate(body.id, {$set: {
+      const changeInfo = await Swaper.findByIdAndUpdate(body.id, {$set: {
         dele: true
       }}, {multi: false});
       

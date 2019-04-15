@@ -16,21 +16,20 @@ export default {
   data() {
     return {
       items: [
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg'
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg'
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg'
-          }
         ]
     }
-  }
+  },
+  methods: {
+    async getItem () {
+      let data = this.$axios.get(`https://blog.vadxq.com/api/swaper/list`)
+      if (data.data.status) {
+        this.items = data.data.info
+      }
+    }
+  },
+  created() {
+    this.getItem()
+  },
 }
 </script>
 

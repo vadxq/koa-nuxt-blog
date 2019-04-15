@@ -8,6 +8,7 @@ const adminRouter = require('./admin');
 const userRouter = require('./user');
 const sitemapRouter = require('./sitemap');
 const urllinkRouter = require('./urllink');
+const swaperRouter = require('./swaper');
 
 const router = require('koa-router')();
 
@@ -16,6 +17,7 @@ router.use('/api/admin', adminRouter.routes());
 router.use('/api/user', userRouter.routes());
 router.use('/sitemap.xml', sitemapRouter.routes());
 router.use('/api/url', urllinkRouter.routes());
+router.use('/api/swaper', swaperRouter.routes());
 
 router
   .post('/graphql', async (ctx, next) => {
