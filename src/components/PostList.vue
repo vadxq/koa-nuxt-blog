@@ -4,23 +4,28 @@
     <v-layout row wrap>
       <v-flex d-flex xs12 sm6 class="post-card" v-for="item in list" :key="item._id">
         <v-hover>
-          <v-card max-width="350"  slot-scope="{hover}">
+          <!-- <v-card max-width="350"  slot-scope="{hover}"> -->
+          <v-card max-width="350">
             <v-img
               class="white--text"
               height="200px"
               :src="item.coverimg"
             >
-              <v-container fill-height  v-if="hover">
+              <!-- <v-container fill-height  v-if="hover">
                 <v-layout fill-height>
                   <v-flex xs12 align-end flexbox>
                     <span>{{item.description}}</span>
                   </v-flex>
                 </v-layout>
-              </v-container>
+              </v-container> -->
             </v-img>
             <v-card-title>
               <div>
-                <span>{{item.title}}</span>
+                <h3 class=" mb-0">{{item.title}}</h3>
+              </div>
+              
+              <div>
+                <span class="grey--text itemdesc">{{ item.description }}</span>
               </div>
             </v-card-title>
             <v-card-actions>
@@ -68,5 +73,11 @@ export default {
   .post-card {
     justify-content: center;
     margin: 20px 0;
+  }
+  .itemdesc {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
   }
 </style>

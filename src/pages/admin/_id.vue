@@ -3,8 +3,9 @@
   <v-container>
     <h1>{{item.title}}</h1>
     <v-divider></v-divider>
-    <v-layout row >
-      <div v-html="item.content"></div>
+    <v-img aspect-ratio="1.5" :src="item.coverimg"></v-img>
+    <v-layout row class="ql-container ql-snow">
+      <div v-html="item.content"  class="ql-editor"></div>
     </v-layout>
   </v-container>
 </section>
@@ -44,6 +45,12 @@ h1 {
 }
 .row {
   margin: 1rem 0;
+}
+.ql-container {
+  border: none;
+}
+.v-image {
+  max-height: 21rem;
 }
 </style>
 

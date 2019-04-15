@@ -25,6 +25,10 @@ module.exports = {
         href:
           'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
       }
+      // {
+      //   rel: 'stylesheet',
+      //   href: 'https://cdn.quilljs.com/1.3.6/quill.snow.css'
+      // }
     ]
   },
 
